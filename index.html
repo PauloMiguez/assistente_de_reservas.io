@@ -482,7 +482,7 @@
                 font-size: 14px;
             }
 
-            .message-content {
+            .message.bot .message-content {
                 max-width: 70%;
                 font-size: 16px;
                 padding: 12px 16px;
@@ -1094,16 +1094,10 @@
             // 7. Adicionar estilos para melhor legibilidade
             formattedText = formattedText.replace(/<p>/g, '<p style="margin: 8px 0; line-height: 1.5;">');
             
-            // 8. Adicionar container para resposta formatada
+            // 8. Adicionar container para resposta formatada (SEM a mensagem da dica)
             formattedText = `
                 <div class="ai-response">
                     ${formattedText}
-                    
-                    <div style="margin-top: 15px; padding-top: 10px; border-top: 1px solid #eee;">
-                        <p style="font-size: 13px; color: #666; margin: 5px 0;">
-                            <em>💡 <strong>Dica:</strong> Clique em um número para ligar diretamente!</em>
-                        </p>
-                    </div>
                 </div>
             `;
             
@@ -1143,14 +1137,16 @@
             
             // Fallback genérico
             return `
-                <p>Desculpe, estou com dificuldades técnicas no momento.</p>
-                <p>Você pode:</p>
-                <div class="quick-actions">
-                    <button class="quick-action" data-action="solicitar-orcamento">💰 Solicitar Orçamento</button>
-                    <button class="quick-action" data-action="informacoes-hotel">🏨 Sobre o Hotel</button>
-                    <button class="whatsapp-button" onclick="openWhatsApp('Olá, preciso de ajuda com o Hotel Granja Brasil')">
-                        💬 WhatsApp
-                    </button>
+                <div class="ai-response">
+                    <p>Desculpe, estou com dificuldades técnicas no momento.</p>
+                    <p>Você pode:</p>
+                    <div class="quick-actions">
+                        <button class="quick-action" data-action="solicitar-orcamento">💰 Solicitar Orçamento</button>
+                        <button class="quick-action" data-action="informacoes-hotel">🏨 Sobre o Hotel</button>
+                        <button class="whatsapp-button" onclick="openWhatsApp('Olá, preciso de ajuda com o Hotel Granja Brasil')">
+                            💬 WhatsApp
+                        </button>
+                    </div>
                 </div>
             `;
         }
@@ -1281,112 +1277,114 @@
             const minDate = tomorrow.toISOString().split('T')[0];
 
             const formHTML = `
-                <p><strong>💰 Solicitar Orçamento de Reserva</strong></p>
-                <p>Preencha os dados abaixo para receber seu orçamento personalizado em tempo real:</p>
-                <div class="quote-form" id="quoteForm">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Data de Check-in:</label>
-                            <input type="date" id="checkinDate" min="${minDate}">
+                <div class="ai-response">
+                    <p><strong>💰 Solicitar Orçamento de Reserva</strong></p>
+                    <p>Preencha os dados abaixo para receber seu orçamento personalizado em tempo real:</p>
+                    <div class="quote-form" id="quoteForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Data de Check-in:</label>
+                                <input type="date" id="checkinDate" min="${minDate}">
+                            </div>
+                            <div class="form-group">
+                                <label>Data de Check-out:</label>
+                                <input type="date" id="checkoutDate" min="${minDate}">
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label>Data de Check-out:</label>
-                            <input type="date" id="checkoutDate" min="${minDate}">
-                        </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label>Número de Adultos:</label>
-                        <select id="adults" onchange="validateGuestCombination()">
-                            <option value="1">1 Adulto</option>
-                            <option value="2" selected>2 Adultos</option>
-                            <option value="3">3 Adultos</option>
-                        </select>
-                    </div>
-
-                    <div class="children-section">
-                        <h4>👶 Crianças (até 17 anos)</h4>
                         <div class="form-group">
-                            <label>Quantidade de Crianças:</label>
-                            <select id="hasChildren" onchange="toggleChildAge(); validateGuestCombination()">
-                                <option value="0">Sem crianças</option>
-                                <option value="1">1 Criança</option>
-                                <option value="2">2 Crianças</option>
+                            <label>Número de Adultos:</label>
+                            <select id="adults" onchange="validateGuestCombination()">
+                                <option value="1">1 Adulto</option>
+                                <option value="2" selected>2 Adultos</option>
+                                <option value="3">3 Adultos</option>
                             </select>
                         </div>
 
-                        <div class="form-group" id="childAgeGroup1" style="display: none;">
-                            <label>Idade da 1ª Criança:</label>
-                            <select id="childAge1" onchange="validateGuestCombination()">
-                                <option value="0">0 ano</option>
-                                <option value="1">1 ano</option>
-                                <option value="2">2 anos</option>
-                                <option value="3">3 anos</option>
-                                <option value="4">4 anos</option>
-                                <option value="5">5 anos</option>
-                                <option value="6" selected>6 anos</option>
-                                <option value="7">7 anos</option>
-                                <option value="8">8 anos</option>
-                                <option value="9">9 anos</option>
-                                <option value="10">10 anos</option>
-                                <option value="11">11 anos</option>
-                                <option value="12">12 anos</option>
-                                <option value="13">13 anos</option>
-                                <option value="14">14 anos</option>
-                                <option value="15">15 anos</option>
-                                <option value="16">16 anos</option>
-                                <option value="17">17 anos</option>
-                            </select>
+                        <div class="children-section">
+                            <h4>👶 Crianças (até 17 anos)</h4>
+                            <div class="form-group">
+                                <label>Quantidade de Crianças:</label>
+                                <select id="hasChildren" onchange="toggleChildAge(); validateGuestCombination()">
+                                    <option value="0">Sem crianças</option>
+                                    <option value="1">1 Criança</option>
+                                    <option value="2">2 Crianças</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group" id="childAgeGroup1" style="display: none;">
+                                <label>Idade da 1ª Criança:</label>
+                                <select id="childAge1" onchange="validateGuestCombination()">
+                                    <option value="0">0 ano</option>
+                                    <option value="1">1 ano</option>
+                                    <option value="2">2 anos</option>
+                                    <option value="3">3 anos</option>
+                                    <option value="4">4 anos</option>
+                                    <option value="5">5 anos</option>
+                                    <option value="6" selected>6 anos</option>
+                                    <option value="7">7 anos</option>
+                                    <option value="8">8 anos</option>
+                                    <option value="9">9 anos</option>
+                                    <option value="10">10 anos</option>
+                                    <option value="11">11 anos</option>
+                                    <option value="12">12 anos</option>
+                                    <option value="13">13 anos</option>
+                                    <option value="14">14 anos</option>
+                                    <option value="15">15 anos</option>
+                                    <option value="16">16 anos</option>
+                                    <option value="17">17 anos</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group" id="childAgeGroup2" style="display: none;">
+                                <label>Idade da 2ª Criança:</label>
+                                <select id="childAge2" onchange="validateGuestCombination()">
+                                    <option value="0">0 ano</option>
+                                    <option value="1">1 ano</option>
+                                    <option value="2">2 anos</option>
+                                    <option value="3">3 anos</option>
+                                    <option value="4">4 anos</option>
+                                    <option value="5">5 anos</option>
+                                    <option value="6" selected>6 anos</option>
+                                    <option value="7">7 anos</option>
+                                    <option value="8">8 anos</option>
+                                    <option value="9">9 anos</option>
+                                    <option value="10">10 anos</option>
+                                    <option value="11">11 anos</option>
+                                    <option value="12">12 anos</option>
+                                    <option value="13">13 anos</option>
+                                    <option value="14">14 anos</option>
+                                    <option value="15">15 anos</option>
+                                    <option value="16">16 anos</option>
+                                    <option value="17">17 anos</option>
+                                </select>
+                            </div>
+                            <div id="invalidCombinationMsg" class="invalid-combination"></div>
                         </div>
 
-                        <div class="form-group" id="childAgeGroup2" style="display: none;">
-                            <label>Idade da 2ª Criança:</label>
-                            <select id="childAge2" onchange="validateGuestCombination()">
-                                <option value="0">0 ano</option>
-                                <option value="1">1 ano</option>
-                                <option value="2">2 anos</option>
-                                <option value="3">3 anos</option>
-                                <option value="4">4 anos</option>
-                                <option value="5">5 anos</option>
-                                <option value="6" selected>6 anos</option>
-                                <option value="7">7 anos</option>
-                                <option value="8">8 anos</option>
-                                <option value="9">9 anos</option>
-                                <option value="10">10 anos</option>
-                                <option value="11">11 anos</option>
-                                <option value="12">12 anos</option>
-                                <option value="13">13 anos</option>
-                                <option value="14">14 anos</option>
-                                <option value="15">15 anos</option>
-                                <option value="16">16 anos</option>
-                                <option value="17">17 anos</option>
-                            </select>
+                        <div style="background: #e8f4fd; padding: 15px; border-radius: 8px; margin: 15px 0; font-size: 14px;">
+                            <p><strong>ℹ️ Informações Importantes:</strong></p>
+                            <ul style="margin: 8px 0; padding-left: 20px;">
+                                <li>Check-in: ${HOTEL_CONFIG.horarios.checkin} | Check-out: ${HOTEL_CONFIG.horarios.checkout}</li>
+                                <li>Hotel 100% não fumante</li>
+                                <li>Animais de estimação não são permitidos</li>
+                                <li>Atestado médico obrigatório para áreas externas ao Hotel (sauna, academia e piscinas) - válido por 6 meses.</li>
+                                <li>O tarifário e a disponibilidade estão sujeitos a alteração sem aviso prévio. As informações fornecidas nesta consulta serão confirmadas pelo agente de reservas no momento da resposta à sua cotação.</li>
+                            </ul>
                         </div>
-                        <div id="invalidCombinationMsg" class="invalid-combination"></div>
+
+                        <button id="checkAvailabilityBtn" class="quote-button">
+                            🔍 Consultar Disponibilidade
+                        </button>
+
+                        <div id="loadingIndicator" style="display: none;"></div>
+                        <div id="errorIndicator" style="display: none;"></div>
+                        <div id="noAvailabilityIndicator" style="display: none;"></div>
+
+                        <div id="roomSelectionSection" style="display: none; margin-top: 15px;"></div>
+
+                        <div id="quoteResultContainer" style="display: none;"></div>
                     </div>
-
-                    <div style="background: #e8f4fd; padding: 15px; border-radius: 8px; margin: 15px 0; font-size: 14px;">
-                        <p><strong>ℹ️ Informações Importantes:</strong></p>
-                        <ul style="margin: 8px 0; padding-left: 20px;">
-                            <li>Check-in: ${HOTEL_CONFIG.horarios.checkin} | Check-out: ${HOTEL_CONFIG.horarios.checkout}</li>
-                            <li>Hotel 100% não fumante</li>
-                            <li>Animais de estimação não são permitidos</li>
-                            <li>Atestado médico obrigatório para áreas externas ao Hotel (sauna, academia e piscinas) - válido por 6 meses.</li>
-                            <li>O tarifário e a disponibilidade estão sujeitos a alteração sem aviso prévio. As informações fornecidas nesta consulta serão confirmadas pelo agente de reservas no momento da resposta à sua cotação.</li>
-                        </ul>
-                    </div>
-
-                    <button id="checkAvailabilityBtn" class="quote-button">
-                        🔍 Consultar Disponibilidade
-                    </button>
-
-                    <div id="loadingIndicator" style="display: none;"></div>
-                    <div id="errorIndicator" style="display: none;"></div>
-                    <div id="noAvailabilityIndicator" style="display: none;"></div>
-
-                    <div id="roomSelectionSection" style="display: none; margin-top: 15px;"></div>
-
-                    <div id="quoteResultContainer" style="display: none;"></div>
                 </div>
             `;
 
@@ -2214,13 +2212,15 @@ Atenciosamente,
             setTimeout(() => {
                 hideTyping();
                 addMessage(`
-                    <p>📧 <strong>Solicitação de Reserva Corporativa enviada!</strong></p>
-                    <p>Seu email foi direcionado para: <strong>${HOTEL_CONFIG.emailCorporativo}</strong></p>
-                    <p>Nossa equipe comercial entrará em contato em breve para apresentar as melhores condições para sua empresa.</p>
-                    <p>Para informações mais rápidas, você também pode entrar em contato via WhatsApp:</p>
-                    <button class="whatsapp-button" onclick="openWhatsApp('Olá! Tenho interesse em reservas corporativas para o Hotel Granja Brasil.')">
-                        💬 WhatsApp Comercial
-                    </button>
+                    <div class="ai-response">
+                        <p>📧 <strong>Solicitação de Reserva Corporativa enviada!</strong></p>
+                        <p>Seu email foi direcionado para: <strong>${HOTEL_CONFIG.emailCorporativo}</strong></p>
+                        <p>Nossa equipe comercial entrará em contato em breve para apresentar as melhores condições para sua empresa.</p>
+                        <p>Para informações mais rápidas, você também pode entrar em contato via WhatsApp:</p>
+                        <button class="whatsapp-button" onclick="openWhatsApp('Olá! Tenho interesse em reservas corporativas para o Hotel Granja Brasil.')">
+                            💬 WhatsApp Comercial
+                        </button>
+                    </div>
                 `);
             }, 1000);
         }
@@ -2265,13 +2265,15 @@ Atenciosamente,
                 } catch (error) {
                     hideTyping();
                     addMessage(`
-                        <p>Desculpe, ocorreu um erro ao processar sua mensagem.</p>
-                        <p>Você pode:</p>
-                        <div class="quick-actions">
-                            <button class="quick-action" data-action="solicitar-orcamento">💰 Solicitar Orçamento</button>
-                            <button class="quick-action" onclick="openWhatsApp('Olá, preciso de ajuda com o Hotel Granja Brasil')">
-                                💬 WhatsApp
-                            </button>
+                        <div class="ai-response">
+                            <p>Desculpe, ocorreu um erro ao processar sua mensagem.</p>
+                            <p>Você pode:</p>
+                            <div class="quick-actions">
+                                <button class="quick-action" data-action="solicitar-orcamento">💰 Solicitar Orçamento</button>
+                                <button class="quick-action" onclick="openWhatsApp('Olá, preciso de ajuda com o Hotel Granja Brasil')">
+                                    💬 WhatsApp
+                                </button>
+                            </div>
                         </div>
                     `);
                 }
@@ -2288,209 +2290,221 @@ Atenciosamente,
 
             if (lowerMessage.includes('localização') || lowerMessage.includes('endereço') || lowerMessage.includes('onde fica')) {
                 return `
-                    <p><strong>📍 Localização Privilegiada</strong></p>
-                    <p><strong>${HOTEL_CONFIG.localizacao}</strong></p>
-                    <p>🍴 <strong>Proximidade aos melhores restaurantes da região</strong> - ideal para quem busca tranquilidade sem abrir mão do fácil acesso à gastronomia local.</p>
-                    <p>🚗 <strong>Estacionamento Gratuito:</strong> Coberto (mediante disponibilidade) ou descoberto.</p>
-                    <div class="quick-actions">
-                        <button class="quick-action" data-action="solicitar-orcamento">💰 Solicitar Orçamento</button>
+                    <div class="ai-response">
+                        <p><strong>📍 Localização Privilegiada</strong></p>
+                        <p><strong>${HOTEL_CONFIG.localizacao}</strong></p>
+                        <p>🍴 <strong>Proximidade aos melhores restaurantes da região</strong> - ideal para quem busca tranquilidade sem abrir mão do fácil acesso à gastronomia local.</p>
+                        <p>🚗 <strong>Estacionamento Gratuito:</strong> Coberto (mediante disponibilidade) ou descoberto.</p>
+                        <div class="quick-actions">
+                            <button class="quick-action" data-action="solicitar-orcamento">💰 Solicitar Orçamento</button>
+                        </div>
                     </div>
                 `;
             }
 
             if (lowerMessage.includes('serviço') || lowerMessage.includes('facilidade') || lowerMessage.includes('comodidade') || lowerMessage.includes('lazer')) {
                 return `
-                    <p><strong>🌟 Lazer para Todos os Perfis</strong></p>
-                    <p>Desfrute de nossa infraestrutura exclusiva:</p>
-                    <ul style="margin: 10px 0; padding-left: 20px;">
-                        ${HOTEL_CONFIG.servicos.map(servico => `<li>✅ ${servico}</li>`).join('')}
-                    </ul>
-                    <p><strong>⏰ Horário da Piscina:</strong> ${HOTEL_CONFIG.horarios.piscina}</p>
-                    <div class="quick-actions">
-                        <button class="quick-action" data-action="solicitar-orcamento">💰 Fazer Orçamento</button>
+                    <div class="ai-response">
+                        <p><strong>🌟 Lazer para Todos os Perfis</strong></p>
+                        <p>Desfrute de nossa infraestrutura exclusiva:</p>
+                        <ul style="margin: 10px 0; padding-left: 20px;">
+                            ${HOTEL_CONFIG.servicos.map(servico => `<li>✅ ${servico}</li>`).join('')}
+                        </ul>
+                        <p><strong>⏰ Horário da Piscina:</strong> ${HOTEL_CONFIG.horarios.piscina}</p>
+                        <div class="quick-actions">
+                            <button class="quick-action" data-action="solicitar-orcamento">💰 Fazer Orçamento</button>
+                        </div>
                     </div>
                 `;
             }
 
             if (lowerMessage.includes('contato') || lowerMessage.includes('telefone') || lowerMessage.includes('whatsapp')) {
                 return `
-                    <p><strong>📞 Entre em Contato</strong></p>
-                    <p>WhatsApp: <strong>${HOTEL_CONFIG.whatsappNumber}</strong></p>
-                    <p><strong>⏰ Horários de Atendimento:</strong></p>
-                    <ul style="margin: 10px 0; padding-left: 20px;">
-                        <li><strong>Recepção:</strong> ${HOTEL_CONFIG.horarios.recepcao}</li>
-                        <li><strong>Governança:</strong> ${HOTEL_CONFIG.horarios.governanca}</li>
-                    </ul>
-                    <button id="initialWhatsappBtn" class="whatsapp-button">
-                        💬 Chamar no WhatsApp
-                    </button>
+                    <div class="ai-response">
+                        <p><strong>📞 Entre em Contato</strong></p>
+                        <p>WhatsApp: <strong>${HOTEL_CONFIG.whatsappNumber}</strong></p>
+                        <p><strong>⏰ Horários de Atendimento:</strong></p>
+                        <ul style="margin: 10px 0; padding-left: 20px;">
+                            <li><strong>Recepção:</strong> ${HOTEL_CONFIG.horarios.recepcao}</li>
+                            <li><strong>Governança:</strong> ${HOTEL_CONFIG.horarios.governanca}</li>
+                        </ul>
+                        <button id="initialWhatsappBtn" class="whatsapp-button">
+                            💬 Chamar no WhatsApp
+                        </button>
+                    </div>
                 `;
             }
 
             if (lowerMessage.includes('política') || lowerMessage.includes('regra') || lowerMessage.includes('cancelamento') || lowerMessage.includes('criança')) {
                 return `
-                    <p><strong>📋 Políticas do Hotel</strong></p>
-                    <ul style="margin: 10px 0; padding-left: 20px;">
-                        <li>✅ <strong>Cancelamento:</strong> ${HOTEL_CONFIG.politicas.cancelamento}</li>
-                        <li>👶 <strong>Crianças:</strong> ${HOTEL_CONFIG.politicas.criancas}</li>
-                        <li>👥 <strong>Hóspedes Extras:</strong> ${HOTEL_CONFIG.politicas.hospedeExtra}</li>
-                        <li>🚭 <strong>Ambiente:</strong> ${HOTEL_CONFIG.politicas.fumante}</li>
-                        <li>🐕 <strong>Animais:</strong> ${HOTEL_CONFIG.politicas.animais}</li>
-                        <li>📋 <strong>Atestado Médico:</strong> ${HOTEL_CONFIG.politicas.atestatMedico}</li>
-                    </ul>
-                    <div class="quick-actions">
-                        <button class="quick-action" data-action="solicitar-orcamento">💰 Fazer Orçamento</button>
+                    <div class="ai-response">
+                        <p><strong>📋 Políticas do Hotel</strong></p>
+                        <ul style="margin: 10px 0; padding-left: 20px;">
+                            <li>✅ <strong>Cancelamento:</strong> ${HOTEL_CONFIG.politicas.cancelamento}</li>
+                            <li>👶 <strong>Crianças:</strong> ${HOTEL_CONFIG.politicas.criancas}</li>
+                            <li>👥 <strong>Hóspedes Extras:</strong> ${HOTEL_CONFIG.politicas.hospedeExtra}</li>
+                            <li>🚭 <strong>Ambiente:</strong> ${HOTEL_CONFIG.politicas.fumante}</li>
+                            <li>🐕 <strong>Animais:</strong> ${HOTEL_CONFIG.politicas.animais}</li>
+                            <li>📋 <strong>Atestado Médico:</strong> ${HOTEL_CONFIG.politicas.atestatMedico}</li>
+                        </ul>
+                        <div class="quick-actions">
+                            <button class="quick-action" data-action="solicitar-orcamento">💰 Fazer Orçamento</button>
+                        </div>
                     </div>
                 `;
             }
 
             if (lowerMessage.includes('horário') || lowerMessage.includes('check') || lowerMessage.includes('piscina')) {
                 return `
-                    <p><strong>⏰ Horários de Funcionamento</strong></p>
-                    <ul style="margin: 10px 0; padding-left: 20px;">
-                        <li><strong>Check-in:</strong> ${HOTEL_CONFIG.horarios.checkin}</li>
-                        <li><strong>Check-out:</strong> ${HOTEL_CONFIG.horarios.checkout}</li>
-                        <li><strong>Recepção:</strong> ${HOTEL_CONFIG.horarios.recepcao}</li>
-                        <li><strong>Governança:</strong> ${HOTEL_CONFIG.horarios.governanca}</li>
-                        <li><strong>Piscina:</strong> ${HOTEL_CONFIG.horarios.piscina}</li>
-                    </ul>
-                    <div class="quick-actions">
-                        <button class="quick-action" data-action="solicitar-orcamento">💰 Solicitar Orçamento</button>
+                    <div class="ai-response">
+                        <p><strong>⏰ Horários de Funcionamento</strong></p>
+                        <ul style="margin: 10px 0; padding-left: 20px;">
+                            <li><strong>Check-in:</strong> ${HOTEL_CONFIG.horarios.checkin}</li>
+                            <li><strong>Check-out:</strong> ${HOTEL_CONFIG.horarios.checkout}</li>
+                            <li><strong>Recepção:</strong> ${HOTEL_CONFIG.horarios.recepcao}</li>
+                            <li><strong>Governança:</strong> ${HOTEL_CONFIG.horarios.governanca}</li>
+                            <li><strong>Piscina:</strong> ${HOTEL_CONFIG.horarios.piscina}</li>
+                        </ul>
+                        <div class="quick-actions">
+                            <button class="quick-action" data-action="solicitar-orcamento">💰 Solicitar Orçamento</button>
+                        </div>
                     </div>
                 `;
             }
 
             if (lowerMessage.includes('informação') || lowerMessage.includes('sobre') || lowerMessage.includes('hotel')) {
                 return `
-                    <div style="background: #f8f9fa; border-radius: 8px; overflow: hidden; margin: 15px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                        <div style="background: #075e54; color: white; padding: 12px 15px;">
-                            <h3 style="margin: 0; font-size: 18px;">🏨 Nossas Acomodações</h3>
-                        </div>
+                    <div class="ai-response">
+                        <div style="background: #f8f9fa; border-radius: 8px; overflow: hidden; margin: 15px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                            <div style="background: #075e54; color: white; padding: 12px 15px;">
+                                <h3 style="margin: 0; font-size: 18px;">🏨 Nossas Acomodações</h3>
+                            </div>
 
-                        <div style="padding: 15px;">
-                            <!-- Apartamento Superior -->
-                            <div style="margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
-                                <div style="display: flex; align-items: center; margin-bottom: 10px;">
-                                    <div style="background: #128c7e; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 12px; flex-shrink: 0;">
-                                        🛏️
+                            <div style="padding: 15px;">
+                                <!-- Apartamento Superior -->
+                                <div style="margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
+                                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                                        <div style="background: #128c7e; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 12px; flex-shrink: 0;">
+                                            🛏️
+                                        </div>
+                                        <h4 style="margin: 0; color: #075e54;">Apartamento Superior</h4>
                                     </div>
-                                    <h4 style="margin: 0; color: #075e54;">Apartamento Superior</h4>
+
+                                    <div style="display: flex; flex-wrap: wrap; gap: 15px;">
+                                        <div style="flex: 1; min-width: 200px;">
+                                            <p style="margin: 5px 0; color: #555;"><strong>👥 Capacidade:</strong> Até 2 pessoas</p>
+                                            <p style="margin: 5px 0; color: #555;"><strong>📏 Área:</strong> 26 m²</p>
+                                            <p style="margin: 5px 0; color: #555;"><strong>🛌 Camas:</strong> 2 camas separadas (padrão viúva)</p>
+                                        </div>
+
+                                        <div style="flex: 1; min-width: 200px;">
+                                            <p style="margin: 5px 0; color: #555;"><strong>🌟 Destaques:</strong></p>
+                                            <ul style="margin: 5px 0; padding-left: 20px; color: #555;">
+                                                <li>Ideal para solteiros</li>
+                                                <li>Mesa de trabalho</li>
+                                            </ul>
+                                        </div>
+
+                                        <div style="flex: 1; min-width: 200px;">
+                                            <p style="margin: 5px 0; color: #555;"><strong>🛁 Comodidades:</strong></p>
+                                            <ul style="margin: 5px 0; padding-left: 20px; color: #555;">
+                                                <li>Ar-condicionado</li>
+                                                <li>Frigobar</li>
+                                                <li>Secador de cabelos</li>
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <div style="display: flex; flex-wrap: wrap; gap: 15px;">
-                                    <div style="flex: 1; min-width: 200px;">
-                                        <p style="margin: 5px 0; color: #555;"><strong>👥 Capacidade:</strong> Até 2 pessoas</p>
-                                        <p style="margin: 5px 0; color: #555;"><strong>📏 Área:</strong> 26 m²</p>
-                                        <p style="margin: 5px 0; color: #555;"><strong>🛌 Camas:</strong> 2 camas separadas (padrão viúva)</p>
+                                <!-- Suíte Sênior -->
+                                <div style="margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
+                                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                                        <div style="background: #128c7e; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 12px; flex-shrink: 0;">
+                                            🛋️
+                                        </div>
+                                        <h4 style="margin: 0; color: #075e54;">Suíte Sênior</h4>
                                     </div>
 
-                                    <div style="flex: 1; min-width: 200px;">
-                                        <p style="margin: 5px 0; color: #555;"><strong>🌟 Destaques:</strong></p>
-                                        <ul style="margin: 5px 0; padding-left: 20px; color: #555;">
-                                            <li>Ideal para solteiros</li>
-                                            <li>Mesa de trabalho</li>
-                                        </ul>
+                                    <div style="display: flex; flex-wrap: wrap; gap: 15px;">
+                                        <div style="flex: 1; min-width: 200px;">
+                                            <p style="margin: 5px 0; color: #555;"><strong>👥 Capacidade:</strong> Até 3 pessoas</p>
+                                            <p style="margin: 5px 0; color: #555;"><strong>📏 Área:</strong> 41 m²</p>
+                                            <p style="margin: 5px 0; color: #555;"><strong>🛌 Camas:</strong> 1 cama King Size + sofá-cama</p>
+                                        </div>
+
+                                        <div style="flex: 1; min-width: 200px;">
+                                            <p style="margin: 5px 0; color: #555;"><strong>🌟 Destaques:</strong></p>
+                                            <ul style="margin: 5px 0; padding-left: 20px; color: #555;">
+                                                <li>Conforto ampliado</li>
+                                                <li>Sala com sofá-cama</li>
+                                                <li>Mesa de trabalho</li>
+                                            </ul>
+                                        </div>
+
+                                        <div style="flex: 1; min-width: 200px;">
+                                            <p style="margin: 5px 0; color: #555;"><strong>🛁 Comodidades:</strong></p>
+                                            <ul style="margin: 5px 0; padding-left: 20px; color: #555;">
+                                                <li>Ar-condicionado</li>
+                                                <li>Frigobar</li>
+                                                <li>Microondas</li>
+                                                <li>Pia</li>
+                                                <li>Sacada</li>
+                                                <li>Secador de cabelos</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Suíte Master -->
+                                <div style="margin-bottom: 10px;">
+                                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                                        <div style="background: #128c7e; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 12px; flex-shrink: 0;">
+                                            🌟
+                                        </div>
+                                        <h4 style="margin: 0; color: #075e54;">Suíte Master (Cobertura)</h4>
                                     </div>
 
-                                    <div style="flex: 1; min-width: 200px;">
-                                        <p style="margin: 5px 0; color: #555;"><strong>🛁 Comodidades:</strong></p>
-                                        <ul style="margin: 5px 0; padding-left: 20px; color: #555;">
-                                            <li>Ar-condicionado</li>
-                                            <li>Frigobar</li>
-                                            <li>Secador de cabelos</li>
-                                        </ul>
+                                    <div style="display: flex; flex-wrap: wrap; gap: 15px;">
+                                        <div style="flex: 1; min-width: 200px;">
+                                            <p style="margin: 5px 0; color: #555;"><strong>👥 Capacidade:</strong> Até 3 pessoas</p>
+                                            <p style="margin: 5px 0; color: #555;"><strong>📏 Área:</strong> 56 m²</p>
+                                            <p style="margin: 5px 0; color: #555;"><strong>🛌 Camas:</strong> 1 cama King Size + sofá-cama</p>
+                                        </div>
+
+                                        <div style="flex: 1; min-width: 200px;">
+                                            <p style="margin: 5px 0; color: #555;"><strong>🌟 Destaques:</strong></p>
+                                            <ul style="margin: 5px 0; padding-left: 20px; color: #555;">
+                                                <li>Vista privilegiada</li>
+                                                <li>Varanda espaçosa</li>
+                                                <li>Mesa de trabalho</li>
+                                            </ul>
+                                        </div>
+
+                                        <div style="flex: 1; min-width: 200px;">
+                                            <p style="margin: 5px 0; color: #555;"><strong>🛁 Comodidades:</strong></p>
+                                            <ul style="margin: 5px 0; padding-left: 20px; color: #555;">
+                                                <li>Ar-condicionado</li>
+                                                <li>Frigobar</li>
+                                                <li>Microondas</li>
+                                                <li>Pia</li>
+                                                <li>Varanda</li>
+                                                <li>Secador de cabelos</li>
+                                            </ul>
+                                            <p style="margin: 5px 0; color: #555;"><strong>⚠️ Observação:</strong> Acesso por escada (15 degraus)</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Suíte Sênior -->
-                            <div style="margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
-                                <div style="display: flex; align-items: center; margin-bottom: 10px;">
-                                    <div style="background: #128c7e; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 12px; flex-shrink: 0;">
-                                        🛋️
-                                    </div>
-                                    <h4 style="margin: 0; color: #075e54;">Suíte Sênior</h4>
+                            <div style="background: #f0f8ff; padding: 12px 15px; border-top: 1px solid #e0e0e0;">
+                                <div class="quick-actions">
+                                    <button class="quick-action" data-action="solicitar-orcamento" style="background: #075e54; color: white;">
+                                        💰 Solicitar Orçamento
+                                    </button>
+                                    <button class="quick-action" data-action="politicas">
+                                        📋 Ver Políticas
+                                    </button>
                                 </div>
-
-                                <div style="display: flex; flex-wrap: wrap; gap: 15px;">
-                                    <div style="flex: 1; min-width: 200px;">
-                                        <p style="margin: 5px 0; color: #555;"><strong>👥 Capacidade:</strong> Até 3 pessoas</p>
-                                        <p style="margin: 5px 0; color: #555;"><strong>📏 Área:</strong> 41 m²</p>
-                                        <p style="margin: 5px 0; color: #555;"><strong>🛌 Camas:</strong> 1 cama King Size + sofá-cama</p>
-                                    </div>
-
-                                    <div style="flex: 1; min-width: 200px;">
-                                        <p style="margin: 5px 0; color: #555;"><strong>🌟 Destaques:</strong></p>
-                                        <ul style="margin: 5px 0; padding-left: 20px; color: #555;">
-                                            <li>Conforto ampliado</li>
-                                            <li>Sala com sofá-cama</li>
-                                            <li>Mesa de trabalho</li>
-                                        </ul>
-                                    </div>
-
-                                    <div style="flex: 1; min-width: 200px;">
-                                        <p style="margin: 5px 0; color: #555;"><strong>🛁 Comodidades:</strong></p>
-                                        <ul style="margin: 5px 0; padding-left: 20px; color: #555;">
-                                            <li>Ar-condicionado</li>
-                                            <li>Frigobar</li>
-                                            <li>Microondas</li>
-                                            <li>Pia</li>
-                                            <li>Sacada</li>
-                                            <li>Secador de cabelos</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Suíte Master -->
-                            <div style="margin-bottom: 10px;">
-                                <div style="display: flex; align-items: center; margin-bottom: 10px;">
-                                    <div style="background: #128c7e; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 12px; flex-shrink: 0;">
-                                        🌟
-                                    </div>
-                                    <h4 style="margin: 0; color: #075e54;">Suíte Master (Cobertura)</h4>
-                                </div>
-
-                                <div style="display: flex; flex-wrap: wrap; gap: 15px;">
-                                    <div style="flex: 1; min-width: 200px;">
-                                        <p style="margin: 5px 0; color: #555;"><strong>👥 Capacidade:</strong> Até 3 pessoas</p>
-                                        <p style="margin: 5px 0; color: #555;"><strong>📏 Área:</strong> 56 m²</p>
-                                        <p style="margin: 5px 0; color: #555;"><strong>🛌 Camas:</strong> 1 cama King Size + sofá-cama</p>
-                                    </div>
-
-                                    <div style="flex: 1; min-width: 200px;">
-                                        <p style="margin: 5px 0; color: #555;"><strong>🌟 Destaques:</strong></p>
-                                        <ul style="margin: 5px 0; padding-left: 20px; color: #555;">
-                                            <li>Vista privilegiada</li>
-                                            <li>Varanda espaçosa</li>
-                                            <li>Mesa de trabalho</li>
-                                        </ul>
-                                    </div>
-
-                                    <div style="flex: 1; min-width: 200px;">
-                                        <p style="margin: 5px 0; color: #555;"><strong>🛁 Comodidades:</strong></p>
-                                        <ul style="margin: 5px 0; padding-left: 20px; color: #555;">
-                                            <li>Ar-condicionado</li>
-                                            <li>Frigobar</li>
-                                            <li>Microondas</li>
-                                            <li>Pia</li>
-                                            <li>Varanda</li>
-                                            <li>Secador de cabelos</li>
-                                        </ul>
-                                        <p style="margin: 5px 0; color: #555;"><strong>⚠️ Observação:</strong> Acesso por escada (15 degraus)</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div style="background: #f0f8ff; padding: 12px 15px; border-top: 1px solid #e0e0e0;">
-                            <div class="quick-actions">
-                                <button class="quick-action" data-action="solicitar-orcamento" style="background: #075e54; color: white;">
-                                    💰 Solicitar Orçamento
-                                </button>
-                                <button class="quick-action" data-action="politicas">
-                                    📋 Ver Políticas
-                                </button>
                             </div>
                         </div>
                     </div>
@@ -2506,12 +2520,14 @@ Atenciosamente,
             } catch (error) {
                 hideTyping();
                 return `
-                    <p>Entendi! Estou aqui para ajudá-lo com informações sobre o Hotel Granja Brasil.</p>
-                    <p>Posso ajudá-lo com:</p>
-                    <div class="quick-actions">
-                        <button class="quick-action" data-action="solicitar-orcamento">💰 Orçamento</button>
-                        <button class="quick-action" data-action="informacoes-hotel">🏨 Informações</button>
-                        <button class="quick-action" data-action="contato">📞 Contato</button>
+                    <div class="ai-response">
+                        <p>Entendi! Estou aqui para ajudá-lo com informações sobre o Hotel Granja Brasil.</p>
+                        <p>Posso ajudá-lo com:</p>
+                        <div class="quick-actions">
+                            <button class="quick-action" data-action="solicitar-orcamento">💰 Orçamento</button>
+                            <button class="quick-action" data-action="informacoes-hotel">🏨 Informações</button>
+                            <button class="quick-action" data-action="contato">📞 Contato</button>
+                        </div>
                     </div>
                 `;
             }
@@ -2535,140 +2551,142 @@ Atenciosamente,
                         break;
                     case 'informacoes-hotel':
                         response = `
-                            <div style="background: #f8f9fa; border-radius: 8px; overflow: hidden; margin: 15px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                                <div style="background: #075e54; color: white; padding: 12px 15px;">
-                                    <h3 style="margin: 0; font-size: 18px;">🏨 Hotel Granja Brasil</h3>
-                                </div>
+                            <div class="ai-response">
+                                <div style="background: #f8f9fa; border-radius: 8px; overflow: hidden; margin: 15px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                                    <div style="background: #075e54; color: white; padding: 12px 15px;">
+                                        <h3 style="margin: 0; font-size: 18px;">🏨 Hotel Granja Brasil</h3>
+                                    </div>
 
-                                <div style="padding: 15px;">
-                                    <p><em>Descubra Conforto, Lazer e Sofisticação no Coração de Itaipava</em></p>
+                                    <div style="padding: 15px;">
+                                        <p><em>Descubra Conforto, Lazer e Sofisticação no Coração de Itaipava</em></p>
 
-                                    <hr style="border: 0; height: 1px; background: #eee; margin: 15px 0;">
+                                        <hr style="border: 0; height: 1px; background: #eee; margin: 15px 0;">
 
-                                    <p><strong>📍 Localização:</strong> ${HOTEL_CONFIG.localizacao}</p>
+                                        <p><strong>📍 Localização:</strong> ${HOTEL_CONFIG.localizacao}</p>
 
-                                    <hr style="border: 0; height: 1px; background: #eee; margin: 15px 0;">
+                                        <hr style="border: 0; height: 1px; background: #eee; margin: 15px 0;">
 
-                                    <!-- Apartamento Superior -->
-                                    <div style="margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
-                                        <div style="display: flex; align-items: center; margin-bottom: 10px;">
-                                            <div style="background: #128c7e; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 12px; flex-shrink: 0;">
-                                                🛏️
+                                        <!-- Apartamento Superior -->
+                                        <div style="margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
+                                            <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                                                <div style="background: #128c7e; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 12px; flex-shrink: 0;">
+                                                    🛏️
+                                                </div>
+                                                <h4 style="margin: 0; color: #075e54;">Apartamento Superior</h4>
                                             </div>
-                                            <h4 style="margin: 0; color: #075e54;">Apartamento Superior</h4>
+
+                                            <div style="display: flex; flex-wrap: wrap; gap: 15px;">
+                                                <div style="flex: 1; min-width: 200px;">
+                                                    <p style="margin: 5px 0; color: #555;"><strong>👥 Capacidade:</strong> Até 2 pessoas</p>
+                                                    <p style="margin: 5px 0; color: #555;"><strong>📏 Área:</strong> 26 m²</p>
+                                                    <p style="margin: 5px 0; color: #555;"><strong>🛌 Camas:</strong> 2 camas separadas (padrão viúva)</p>
+                                                </div>
+
+                                                <div style="flex: 1; min-width: 200px;">
+                                                    <p style="margin: 5px 0; color: #555;"><strong>🌟 Destaques:</strong></p>
+                                                    <ul style="margin: 5px 0; padding-left: 20px; color: #555;">
+                                                        <li>Ideal para solteiros</li>
+                                                        <li>Mesa de trabalho</li>
+                                                    </ul>
+                                                </div>
+
+                                                <div style="flex: 1; min-width: 200px;">
+                                                    <p style="margin: 5px 0; color: #555;"><strong>🛁 Comodidades:</strong></p>
+                                                    <ul style="margin: 5px 0; padding-left: 20px; color: #555;">
+                                                        <li>Ar-condicionado</li>
+                                                        <li>Frigobar</li>
+                                                        <li>Secador de cabelos</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
                                         </div>
 
-                                        <div style="display: flex; flex-wrap: wrap; gap: 15px;">
-                                            <div style="flex: 1; min-width: 200px;">
-                                                <p style="margin: 5px 0; color: #555;"><strong>👥 Capacidade:</strong> Até 2 pessoas</p>
-                                                <p style="margin: 5px 0; color: #555;"><strong>📏 Área:</strong> 26 m²</p>
-                                                <p style="margin: 5px 0; color: #555;"><strong>🛌 Camas:</strong> 2 camas separadas (padrão viúva)</p>
+                                        <!-- Suíte Sênior -->
+                                        <div style="margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
+                                            <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                                                <div style="background: #128c7e; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 12px; flex-shrink: 0;">
+                                                    🛋️
+                                                </div>
+                                                <h4 style="margin: 0; color: #075e54;">Suíte Sênior</h4>
                                             </div>
 
-                                            <div style="flex: 1; min-width: 200px;">
-                                                <p style="margin: 5px 0; color: #555;"><strong>🌟 Destaques:</strong></p>
-                                                <ul style="margin: 5px 0; padding-left: 20px; color: #555;">
-                                                    <li>Ideal para solteiros</li>
-                                                    <li>Mesa de trabalho</li>
-                                                </ul>
+                                            <div style="display: flex; flex-wrap: wrap; gap: 15px;">
+                                                <div style="flex: 1; min-width: 200px;">
+                                                    <p style="margin: 5px 0; color: #555;"><strong>👥 Capacidade:</strong> Até 3 pessoas</p>
+                                                    <p style="margin: 5px 0; color: #555;"><strong>📏 Área:</strong> 41 m²</p>
+                                                    <p style="margin: 5px 0; color: #555;"><strong>🛌 Camas:</strong> 1 cama King Size + sofá-cama</p>
+                                                </div>
+
+                                                <div style="flex: 1; min-width: 200px;">
+                                                    <p style="margin: 5px 0; color: #555;"><strong>🌟 Destaques:</strong></p>
+                                                    <ul style="margin: 5px 0; padding-left: 20px; color: #555;">
+                                                        <li>Conforto ampliado</li>
+                                                        <li>Sala com sofá-cama</li>
+                                                        <li>Mesa de trabalho</li>
+                                                    </ul>
+                                                </div>
+
+                                                <div style="flex: 1; min-width: 200px;">
+                                                    <p style="margin: 5px 0; color: #555;"><strong>🛁 Comodidades:</strong></p>
+                                                    <ul style="margin: 5px 0; padding-left: 20px; color: #555;">
+                                                        <li>Ar-condicionado</li>
+                                                        <li>Frigobar</li>
+                                                        <li>Microondas</li>
+                                                        <li>Pia</li>
+                                                        <li>Sacada</li>
+                                                        <li>Secador de cabelos</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Suíte Master -->
+                                        <div style="margin-bottom: 10px;">
+                                            <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                                                <div style="background: #128c7e; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 12px; flex-shrink: 0;">
+                                                    🌟
+                                                </div>
+                                                <h4 style="margin: 0; color: #075e54;">Suíte Master (Cobertura)</h4>
                                             </div>
 
-                                            <div style="flex: 1; min-width: 200px;">
-                                                <p style="margin: 5px 0; color: #555;"><strong>🛁 Comodidades:</strong></p>
-                                                <ul style="margin: 5px 0; padding-left: 20px; color: #555;">
-                                                    <li>Ar-condicionado</li>
-                                                    <li>Frigobar</li>
-                                                    <li>Secador de cabelos</li>
-                                                </ul>
+                                            <div style="display: flex; flex-wrap: wrap; gap: 15px;">
+                                                <div style="flex: 1; min-width: 200px;">
+                                                    <p style="margin: 5px 0; color: #555;"><strong>👥 Capacidade:</strong> Até 3 pessoas</p>
+                                                    <p style="margin: 5px 0; color: #555;"><strong>📏 Área:</strong> 56 m²</p>
+                                                    <p style="margin: 5px 0; color: #555;"><strong>🛌 Camas:</strong> 1 cama King Size + sofá-cama</p>
+                                                </div>
+
+                                                <div style="flex: 1; min-width: 200px;">
+                                                    <p style="margin: 5px 0; color: #555;"><strong>🌟 Destaques:</strong></p>
+                                                    <ul style="margin: 5px 0; padding-left: 20px; color: #555;">
+                                                        <li>Vista privilegiada</li>
+                                                        <li>Varanda espaçosa</li>
+                                                        <li>Mesa de trabalho</li>
+                                                    </ul>
+                                                </div>
+
+                                                <div style="flex: 1; min-width: 200px;">
+                                                    <p style="margin: 5px 0; color: #555;"><strong>🛁 Comodidades:</strong></p>
+                                                    <ul style="margin: 5px 0; padding-left: 20px; color: #555;">
+                                                        <li>Ar-condicionado</li>
+                                                        <li>Frigobar</li>
+                                                        <li>Microondas</li>
+                                                        <li>Pia</li>
+                                                        <li>Varanda</li>
+                                                        <li>Secador de cabelos</li>
+                                                    </ul>
+                                                    <p style="margin: 5px 0; color: #555;"><strong>⚠️ Observação:</strong> Acesso por escada (15 degraus)</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <!-- Suíte Sênior -->
-                                    <div style="margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
-                                        <div style="display: flex; align-items: center; margin-bottom: 10px;">
-                                            <div style="background: #128c7e; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 12px; flex-shrink: 0;">
-                                                🛋️
-                                            </div>
-                                            <h4 style="margin: 0; color: #075e54;">Suíte Sênior</h4>
+                                    <div style="background: #f0f8ff; padding: 12px 15px; border-top: 1px solid #e0e0e0;">
+                                        <div class="quick-actions">
+                                            <button class="quick-action" data-action="servicos">🌟 Serviços</button>
+                                            <button class="quick-action" data-action="politicas">📋 Políticas</button>
+                                            <button class="quick-action" data-action="solicitar-orcamento">💰 Orçamento</button>
                                         </div>
-
-                                        <div style="display: flex; flex-wrap: wrap; gap: 15px;">
-                                            <div style="flex: 1; min-width: 200px;">
-                                                <p style="margin: 5px 0; color: #555;"><strong>👥 Capacidade:</strong> Até 3 pessoas</p>
-                                                <p style="margin: 5px 0; color: #555;"><strong>📏 Área:</strong> 41 m²</p>
-                                                <p style="margin: 5px 0; color: #555;"><strong>🛌 Camas:</strong> 1 cama King Size + sofá-cama</p>
-                                            </div>
-
-                                            <div style="flex: 1; min-width: 200px;">
-                                                <p style="margin: 5px 0; color: #555;"><strong>🌟 Destaques:</strong></p>
-                                                <ul style="margin: 5px 0; padding-left: 20px; color: #555;">
-                                                    <li>Conforto ampliado</li>
-                                                    <li>Sala com sofá-cama</li>
-                                                    <li>Mesa de trabalho</li>
-                                                </ul>
-                                            </div>
-
-                                            <div style="flex: 1; min-width: 200px;">
-                                                <p style="margin: 5px 0; color: #555;"><strong>🛁 Comodidades:</strong></p>
-                                                <ul style="margin: 5px 0; padding-left: 20px; color: #555;">
-                                                    <li>Ar-condicionado</li>
-                                                    <li>Frigobar</li>
-                                                    <li>Microondas</li>
-                                                    <li>Pia</li>
-                                                    <li>Sacada</li>
-                                                    <li>Secador de cabelos</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Suíte Master -->
-                                    <div style="margin-bottom: 10px;">
-                                        <div style="display: flex; align-items: center; margin-bottom: 10px;">
-                                            <div style="background: #128c7e; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 12px; flex-shrink: 0;">
-                                                🌟
-                                            </div>
-                                            <h4 style="margin: 0; color: #075e54;">Suíte Master (Cobertura)</h4>
-                                        </div>
-
-                                        <div style="display: flex; flex-wrap: wrap; gap: 15px;">
-                                            <div style="flex: 1; min-width: 200px;">
-                                                <p style="margin: 5px 0; color: #555;"><strong>👥 Capacidade:</strong> Até 3 pessoas</p>
-                                                <p style="margin: 5px 0; color: #555;"><strong>📏 Área:</strong> 56 m²</p>
-                                                <p style="margin: 5px 0; color: #555;"><strong>🛌 Camas:</strong> 1 cama King Size + sofá-cama</p>
-                                            </div>
-
-                                            <div style="flex: 1; min-width: 200px;">
-                                                <p style="margin: 5px 0; color: #555;"><strong>🌟 Destaques:</strong></p>
-                                                <ul style="margin: 5px 0; padding-left: 20px; color: #555;">
-                                                    <li>Vista privilegiada</li>
-                                                    <li>Varanda espaçosa</li>
-                                                    <li>Mesa de trabalho</li>
-                                                </ul>
-                                            </div>
-
-                                            <div style="flex: 1; min-width: 200px;">
-                                                <p style="margin: 5px 0; color: #555;"><strong>🛁 Comodidades:</strong></p>
-                                                <ul style="margin: 5px 0; padding-left: 20px; color: #555;">
-                                                    <li>Ar-condicionado</li>
-                                                    <li>Frigobar</li>
-                                                    <li>Microondas</li>
-                                                    <li>Pia</li>
-                                                    <li>Varanda</li>
-                                                    <li>Secador de cabelos</li>
-                                                </ul>
-                                                <p style="margin: 5px 0; color: #555;"><strong>⚠️ Observação:</strong> Acesso por escada (15 degraus)</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div style="background: #f0f8ff; padding: 12px 15px; border-top: 1px solid #e0e0e0;">
-                                    <div class="quick-actions">
-                                        <button class="quick-action" data-action="servicos">🌟 Serviços</button>
-                                        <button class="quick-action" data-action="politicas">📋 Políticas</button>
-                                        <button class="quick-action" data-action="solicitar-orcamento">💰 Orçamento</button>
                                     </div>
                                 </div>
                             </div>
@@ -2676,66 +2694,74 @@ Atenciosamente,
                         break;
                     case 'servicos':
                         response = `
-                            <p><strong>🌟 Lazer e Serviços</strong></p>
-                            <p>Desfrute de nossa infraestrutura exclusiva:</p>
-                            <ul style="margin: 10px 0; padding-left: 20px;">
-                                ${HOTEL_CONFIG.servicos.map(servico => `<li>✅ ${servico}</li>`).join('')}
-                            </ul>
+                            <div class="ai-response">
+                                <p><strong>🌟 Lazer e Serviços</strong></p>
+                                <p>Desfrute de nossa infraestrutura exclusiva:</p>
+                                <ul style="margin: 10px 0; padding-left: 20px;">
+                                    ${HOTEL_CONFIG.servicos.map(servico => `<li>✅ ${servico}</li>`).join('')}
+                                </ul>
 
-                            <p><strong>⏰ Horário da Piscina:</strong> ${HOTEL_CONFIG.horarios.piscina}</p>
+                                <p><strong>⏰ Horário da Piscina:</strong> ${HOTEL_CONFIG.horarios.piscina}</p>
 
-                            <div class="quick-actions">
-                                <button class="quick-action" data-action="informacoes-hotel">🏨 Sobre o Hotel</button>
-                                <button class="quick-action" data-action="solicitar-orcamento">💰 Fazer Orçamento</button>
+                                <div class="quick-actions">
+                                    <button class="quick-action" data-action="informacoes-hotel">🏨 Sobre o Hotel</button>
+                                    <button class="quick-action" data-action="solicitar-orcamento">💰 Fazer Orçamento</button>
+                                </div>
                             </div>
                         `;
                         break;
                     case 'politicas':
                         response = `
-                            <p><strong>📋 Políticas do Hotel</strong></p>
-                            <ul style="margin: 10px 0; padding-left: 20px;">
-                                <li>✅ <strong>Check-in:</strong> ${HOTEL_CONFIG.horarios.checkin}</li>
-                                <li>✅ <strong>Check-out:</strong> ${HOTEL_CONFIG.horarios.checkout}</li>
-                                <li>✅ <strong>Cancelamento:</strong> ${HOTEL_CONFIG.politicas.cancelamento}</li>
-                                <li>👶 <strong>Crianças:</strong> ${HOTEL_CONFIG.politicas.criancas}</li>
-                                <li>👥 <strong>Hóspedes Extras:</strong> ${HOTEL_CONFIG.politicas.hospedeExtra}</li>
-                                <li>🚭 <strong>Ambiente:</strong> ${HOTEL_CONFIG.politicas.fumante}</li>
-                                <li>🐕 <strong>Animais:</strong> ${HOTEL_CONFIG.politicas.animais}</li>
-                                <li>📋 <strong>Atestado Médico:</strong> ${HOTEL_CONFIG.politicas.atestatMedico}</li>
-                            </ul>
+                            <div class="ai-response">
+                                <p><strong>📋 Políticas do Hotel</strong></p>
+                                <ul style="margin: 10px 0; padding-left: 20px;">
+                                    <li>✅ <strong>Check-in:</strong> ${HOTEL_CONFIG.horarios.checkin}</li>
+                                    <li>✅ <strong>Check-out:</strong> ${HOTEL_CONFIG.horarios.checkout}</li>
+                                    <li>✅ <strong>Cancelamento:</strong> ${HOTEL_CONFIG.politicas.cancelamento}</li>
+                                    <li>👶 <strong>Crianças:</strong> ${HOTEL_CONFIG.politicas.criancas}</li>
+                                    <li>👥 <strong>Hóspedes Extras:</strong> ${HOTEL_CONFIG.politicas.hospedeExtra}</li>
+                                    <li>🚭 <strong>Ambiente:</strong> ${HOTEL_CONFIG.politicas.fumante}</li>
+                                    <li>🐕 <strong>Animais:</strong> ${HOTEL_CONFIG.politicas.animais}</li>
+                                    <li>📋 <strong>Atestado Médico:</strong> ${HOTEL_CONFIG.politicas.atestatMedico}</li>
+                                </ul>
 
-                            <div class="quick-actions">
-                                <button class="quick-action" data-action="solicitar-orcamento">💰 Fazer Orçamento</button>
+                                <div class="quick-actions">
+                                    <button class="quick-action" data-action="solicitar-orcamento">💰 Fazer Orçamento</button>
+                                </div>
                             </div>
                         `;
                         break;
                     case 'localizacao':
                         response = `
-                            <p><strong>📍 Localização Privilegiada</strong></p>
-                            <p><strong>${HOTEL_CONFIG.localizacao}</strong></p>
-                            <p>🍴 <strong>Proximidade aos melhores restaurantes da região</strong></p>
-                            <p>🚗 <strong>Estacionamento Gratuito:</strong> Coberto (mediante disponibilidade) ou descoberto.</p>
+                            <div class="ai-response">
+                                <p><strong>📍 Localização Privilegiada</strong></p>
+                                <p><strong>${HOTEL_CONFIG.localizacao}</strong></p>
+                                <p>🍴 <strong>Proximidade aos melhores restaurantes da região</strong></p>
+                                <p>🚗 <strong>Estacionamento Gratuito:</strong> Coberto (mediante disponibilidade) ou descoberto.</p>
 
-                            <div class="quick-actions">
-                                <button class="quick-action" data-action="solicitar-orcamento">💰 Solicitar Orçamento</button>
+                                <div class="quick-actions">
+                                    <button class="quick-action" data-action="solicitar-orcamento">💰 Solicitar Orçamento</button>
+                                </div>
                             </div>
                         `;
                         break;
                     case 'contato':
                         response = `
-                            <p><strong>📞 Entre em Contato</strong></p>
-                            <p>WhatsApp: <strong>${HOTEL_CONFIG.whatsappNumber}</strong></p>
-                            <p>E-mail Corporativo: <strong>${HOTEL_CONFIG.emailCorporativo}</strong></p>
+                            <div class="ai-response">
+                                <p><strong>📞 Entre em Contato</strong></p>
+                                <p>WhatsApp: <strong>${HOTEL_CONFIG.whatsappNumber}</strong></p>
+                                <p>E-mail Corporativo: <strong>${HOTEL_CONFIG.emailCorporativo}</strong></p>
 
-                            <p><strong>⏰ Horários de Atendimento:</strong></p>
-                            <ul style="margin: 10px 0; padding-left: 20px;">
-                                <li><strong>Recepção:</strong> ${HOTEL_CONFIG.horarios.recepcao}</li>
-                                <li><strong>Governança:</strong> ${HOTEL_CONFIG.horarios.governanca}</li>
-                            </ul>
+                                <p><strong>⏰ Horários de Atendimento:</strong></p>
+                                <ul style="margin: 10px 0; padding-left: 20px;">
+                                    <li><strong>Recepção:</strong> ${HOTEL_CONFIG.horarios.recepcao}</li>
+                                    <li><strong>Governança:</strong> ${HOTEL_CONFIG.horarios.governanca}</li>
+                                </ul>
 
-                            <button id="initialWhatsappBtn" class="whatsapp-button">
-                                💬 Chamar no WhatsApp
-                            </button>
+                                <button id="initialWhatsappBtn" class="whatsapp-button">
+                                    💬 Chamar no WhatsApp
+                                </button>
+                            </div>
                         `;
                         break;
                 }
