@@ -11,7 +11,7 @@
             box-sizing: border-box;
             font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
         }
-        
+
         body {
             background-color: #e5ddd5;
             min-height: 100vh;
@@ -19,9 +19,9 @@
             align-items: flex-start;
             justify-content: center;
             padding: 0;
-            background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AkEEjIZzQJpLgAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAAJUlEQVQ4y2NgGAWjYBSMglEwCkbBKJhYwMjAwMDw//9/BqoBAG4FBGj6r1jZAAAAAElFTkSuQmCC");
+            background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AkEEjIZzQJpLgAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAAJUlEQVQ4y2NgGAWjYBSMglEwCkbBKJhYwMjAwMDw//9/BqoBAG4FBGj6r1jZAAAAAElFTkSuQmCC");
         }
-        
+
         .chat-container {
             background: #e5ddd5;
             border-radius: 0;
@@ -33,7 +33,7 @@
             flex-direction: column;
             overflow: hidden;
         }
-        
+
         .chat-header {
             background: #075e54;
             color: white;
@@ -44,33 +44,33 @@
             align-items: center;
             gap: 10px;
         }
-        
+
         .hotel-logo {
             font-size: 16px;
             font-weight: 500;
             flex-grow: 1;
         }
-        
+
         .hotel-subtitle {
             font-size: 12px;
             opacity: 0.8;
             margin-top: 2px;
         }
-        
+
         .status-indicator {
             display: flex;
             align-items: center;
             gap: 5px;
             font-size: 12px;
         }
-        
+
         .status-dot {
             width: 8px;
             height: 8px;
             background: #4ad504;
             border-radius: 50%;
         }
-        
+
         .chat-messages {
             flex: 1;
             overflow-y: auto;
@@ -79,7 +79,7 @@
             -webkit-overflow-scrolling: touch;
             background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AkEEjIZzQJpLgAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAAJUlEQVQ4y2NgGAWjYBSMglEwCkbBKJhYwMjAwMDw//9/BqoBAG4FBGj6r1jZAAAAAElFTkSuQmCC");
         }
-        
+
         .message {
             margin-bottom: 8px;
             display: flex;
@@ -88,16 +88,23 @@
             animation: slideIn 0.3s ease;
             scroll-margin-top: 10px;
         }
-        
+
         @keyframes slideIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        
+
         .message.user {
             flex-direction: row-reverse;
         }
-        
+
         .message-avatar {
             width: 32px;
             height: 32px;
@@ -109,15 +116,15 @@
             color: white;
             flex-shrink: 0;
         }
-        
+
         .bot-avatar {
             background: #075e54;
         }
-        
+
         .user-avatar {
             background: #128c7e;
         }
-        
+
         .message-content {
             background: white;
             padding: 8px 12px;
@@ -128,12 +135,12 @@
             font-size: 15px;
             line-height: 1.4;
         }
-        
+
         .message.user .message-content {
             background: #dcf8c6;
             color: #000;
         }
-        
+
         .typing-indicator {
             display: none;
             padding: 8px 12px;
@@ -141,12 +148,12 @@
             border-radius: 7.5px;
             box-shadow: 0 1px 0.5px rgba(0,0,0,0.13);
         }
-        
+
         .typing-dots {
             display: flex;
             gap: 4px;
         }
-        
+
         .typing-dot {
             width: 6px;
             height: 6px;
@@ -154,15 +161,25 @@
             border-radius: 50%;
             animation: typingPulse 1.4s ease-in-out infinite both;
         }
-        
-        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
-        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
-        
+
+            .typing-dot:nth-child(1) {
+                animation-delay: -0.32s;
+            }
+
+            .typing-dot:nth-child(2) {
+                animation-delay: -0.16s;
+            }
+
         @keyframes typingPulse {
-            0%, 80%, 100% { transform: scale(0); }
-            40% { transform: scale(1); }
+            0%, 80%, 100% {
+                transform: scale(0);
+            }
+
+            40% {
+                transform: scale(1);
+            }
         }
-        
+
         .chat-input {
             padding: 8px;
             background: #f0f0f0;
@@ -171,13 +188,13 @@
             bottom: 0;
             z-index: 100;
         }
-        
+
         .input-container {
             display: flex;
             gap: 8px;
             align-items: center;
         }
-        
+
         .message-input {
             flex: 1;
             padding: 10px 15px;
@@ -187,7 +204,7 @@
             font-size: 15px;
             background: white;
         }
-        
+
         .send-button {
             width: 40px;
             height: 40px;
@@ -202,18 +219,18 @@
             transition: background 0.2s;
             font-size: 16px;
         }
-        
-        .send-button:hover {
-            background: #128c7e;
-        }
-        
+
+            .send-button:hover {
+                background: #128c7e;
+            }
+
         .quick-actions {
             display: flex;
             flex-wrap: wrap;
             gap: 6px;
             margin: 8px 0;
         }
-        
+
         .quick-action {
             background: white;
             border: 1px solid #ddd;
@@ -223,11 +240,11 @@
             font-size: 13px;
             transition: all 0.2s;
         }
-        
-        .quick-action:hover {
-            background: #f5f5f5;
-        }
-        
+
+            .quick-action:hover {
+                background: #f5f5f5;
+            }
+
         .quote-button, .whatsapp-button, .corporate-button {
             border-radius: 18px;
             padding: 10px 15px;
@@ -243,17 +260,17 @@
             font-size: 15px;
             border: none;
         }
-        
+
         .quote-button {
             background: #075e54;
             color: white;
         }
-        
+
         .whatsapp-button {
             background: #25d366;
             color: white;
         }
-        
+
         .corporate-button {
             background: #075e54;
             color: white;
@@ -266,37 +283,37 @@
             margin: 8px 0;
             border: 1px solid #e9ecef;
         }
-        
+
         .form-group {
             margin-bottom: 12px;
         }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 4px;
-            font-weight: 600;
-            color: #2c3e50;
-            font-size: 13px;
-        }
-        
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 8px 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 13px;
-        }
-        
+
+            .form-group label {
+                display: block;
+                margin-bottom: 4px;
+                font-weight: 600;
+                color: #2c3e50;
+                font-size: 13px;
+            }
+
+            .form-group input, .form-group select {
+                width: 100%;
+                padding: 8px 10px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                font-size: 13px;
+            }
+
         .form-row {
             display: flex;
             flex-direction: column;
             gap: 12px;
         }
-        
-        .form-row .form-group {
-            flex: 1;
-        }
-        
+
+            .form-row .form-group {
+                flex: 1;
+            }
+
         .quote-result {
             background: #075e54;
             color: white;
@@ -305,7 +322,7 @@
             margin: 8px 0;
             font-size: 14px;
         }
-        
+
         .loading {
             color: #075e54;
             text-align: center;
@@ -313,7 +330,7 @@
             font-size: 14px;
             display: none;
         }
-        
+
         .error-message {
             color: #e74c3c;
             text-align: center;
@@ -321,7 +338,7 @@
             display: none;
             font-size: 14px;
         }
-        
+
         .no-availability {
             color: #e67e22;
             text-align: center;
@@ -336,7 +353,7 @@
             cursor: not-allowed;
             pointer-events: none;
         }
-        
+
         .children-section {
             background: #f0f8ff;
             padding: 12px;
@@ -344,12 +361,12 @@
             margin: 12px 0;
             border-left: 4px solid #3498db;
         }
-        
-        .children-section h4 {
-            margin-bottom: 8px;
-            color: #2c3e50;
-        }
-        
+
+            .children-section h4 {
+                margin-bottom: 8px;
+                color: #2c3e50;
+            }
+
         .invalid-combination {
             color: #e74c3c;
             font-size: 13px;
@@ -381,20 +398,63 @@
             border: 1px solid #ddd;
         }
 
-        #roomsContainer label {
-            cursor: pointer;
-            user-select: none;
+            #roomsContainer label {
+                cursor: pointer;
+                user-select: none;
+            }
+
+            #roomsContainer input[type="checkbox"] {
+                cursor: pointer;
+                margin-right: 10px;
+            }
+
+            #roomsContainer div {
+                display: flex;
+                align-items: center;
+                margin: 8px 0;
+            }
+
+        /* Estilos para respostas da IA */
+        .ai-response {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-left: 4px solid #128c7e;
         }
 
-        #roomsContainer input[type="checkbox"] {
-            cursor: pointer;
-            margin-right: 10px;
+        .ai-response ul {
+            margin: 10px 0;
+            padding-left: 20px;
         }
-
-        #roomsContainer div {
-            display: flex;
-            align-items: center;
+        
+        .ai-response li {
             margin: 8px 0;
+            padding-left: 5px;
+            line-height: 1.5;
+        }
+        
+        .ai-response strong {
+            color: #075e54;
+        }
+        
+        .ai-response a.phone-link {
+            color: #075e54;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background: #f0f8ff;
+            transition: all 0.2s;
+            display: inline-block;
+            margin-left: 5px;
+        }
+        
+        .ai-response a.phone-link:hover {
+            background: #e1f5fe;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         @media (min-width: 768px) {
@@ -402,93 +462,93 @@
                 align-items: center;
                 padding: 20px;
             }
-            
+
             .chat-container {
                 border-radius: 8px;
                 box-shadow: 0 6px 18px rgba(0,0,0,0.1);
                 max-width: 675px;
                 height: 80vh;
             }
-            
+
             .chat-header {
                 padding: 12px 15px;
             }
-            
+
             .hotel-logo {
                 font-size: 22px;
             }
-            
+
             .hotel-subtitle {
                 font-size: 14px;
             }
-            
+
             .message-content {
                 max-width: 70%;
                 font-size: 16px;
                 padding: 12px 16px;
             }
-            
+
             .quick-action {
                 font-size: 14px;
                 padding: 8px 16px;
             }
-            
+
             .quote-form {
                 padding: 20px;
             }
-            
-            .form-group input, 
+
+            .form-group input,
             .form-group select {
                 padding: 10px 12px;
                 font-size: 15px;
             }
-            
+
             .form-group label {
                 font-size: 15px;
             }
-            
+
             #roomType {
                 font-size: 15px;
                 padding: 10px;
             }
-            
+
             .accommodation-divider {
                 margin: 20px 0;
             }
-            
-            .quote-button, 
-            .whatsapp-button, 
+
+            .quote-button,
+            .whatsapp-button,
             .corporate-button {
                 padding: 12px 20px;
                 font-size: 16px;
             }
-            
+
             .send-button {
                 width: 48px;
                 height: 48px;
                 font-size: 20px;
             }
-            
+
             .quote-result {
                 padding: 20px;
             }
-            
-            .quote-result h3 {
-                font-size: 20px;
-            }
-            
-            .quote-result h4 {
-                font-size: 22px;
-            }
-            
+
+                .quote-result h3 {
+                    font-size: 20px;
+                }
+
+                .quote-result h4 {
+                    font-size: 22px;
+                }
+
             .form-row {
                 flex-direction: row;
                 gap: 20px;
             }
-            
-            .form-row .form-group {
-                flex: 1;
-            }
+
+                .form-row .form-group {
+                    flex: 1;
+                }
         }
     </style>
 </head>
@@ -504,7 +564,7 @@
                 <span>Online</span>
             </div>
         </div>
-        
+
         <div class="chat-messages" id="chatMessages">
             <div class="message bot">
                 <div class="message-avatar bot-avatar">🤖</div>
@@ -516,9 +576,10 @@
                         <li>📋 Informações sobre acomodações</li>
                         <li>🌟 Serviços e facilidades</li>
                         <li>❓ Esclarecimento de dúvidas</li>
+                        <li>📍 Informações sobre estabelecimentos locais</li>
                     </ul>
                     <p>Como posso ajudá-lo hoje?</p>
-                    
+
                     <div class="quick-actions">
                         <button class="quick-action" data-action="solicitar-orcamento">💰 Solicitar Orçamento</button>
                         <button class="quick-action" data-action="informacoes-hotel">🏨 Sobre o Hotel</button>
@@ -527,13 +588,13 @@
                         <button class="quick-action" data-action="localizacao">📍 Localização</button>
                         <button class="quick-action" data-action="contato">📞 Contato</button>
                     </div>
-                    
+
                     <button id="corporateBtn" class="corporate-button">
                         🏢 Reservas Corporativas
                     </button>
                 </div>
             </div>
-            
+
             <div class="message bot typing-indicator" id="typingIndicator">
                 <div class="message-avatar bot-avatar">🤖</div>
                 <div class="typing-indicator">
@@ -545,7 +606,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="chat-input">
             <div class="input-container">
                 <input type="text" id="messageInput" class="message-input" placeholder="Digite sua mensagem...">
@@ -581,15 +642,14 @@
                 "Parquinho Infantil",
                 "Estacionamento Gratuito (coberto/descoberto)",
                 "Adega Quinta do Escanção",
-                "Divino & Cucina (Culinária Italiana)",
-                "Chez Bonbon (Chocolates Gourmet)"
+                "Divino & Cucina (Culinária Italiana)"
             ],
             horarios: {
                 checkin: "14h às 19h",
                 checkout: "12h",
                 governanca: "7h às 22h",
                 recepcao: "7h às 19h",
-                piscina: "Terça a domingo: 10:30h às 19h (Segunda: manutenção)"
+                piscina: "Quinta a domingo: 10h às 19h"
             },
             acomodacoes: [
                 {
@@ -612,54 +672,129 @@
 
         // Dados de minlos (estadia mínima)
         const MINLOS_DATA = {
-            "09/08/2025": 2,
-            "16/08/2025": 2,
-            "23/08/2025": 2,
-            "30/08/2025": 2,
-            "06/09/2025": 2,
-            "13/09/2025": 2,
-            "20/09/2025": 2,
-            "27/09/2025": 2,
-            "04/10/2025": 2,
-            "10/10/2025": 3,
-            "11/10/2025": 3,
-            "12/10/2025": 3,
-            "13/10/2025": 3,
-            "18/10/2025": 2,
-            "25/10/2025": 2,
-            "30/10/2025": 3,
-            "31/10/2025": 3,
-            "01/11/2025": 3,
-            "02/11/2025": 3,
-            "03/11/2025": 3,
-            "06/11/2025": 3,
-            "07/11/2025": 3,
-            "08/11/2025": 3,
-            "09/11/2025": 3,
-            "10/11/2025": 3,
-            "14/11/2025": 2,
-            "15/11/2025": 2,
-            "16/11/2025": 2,
-            "19/11/2025": 4,
-            "20/11/2025": 4,
-            "21/11/2025": 4,
-            "22/11/2025": 4,
-            "23/11/2025": 4,
-            "29/11/2025": 2,
-            "06/12/2025": 2,
-            "13/12/2025": 2,
+            // Réveillon 2025
             "20/12/2025": 2,
             "27/12/2025": 2,
             "28/12/2025": 4,
             "29/12/2025": 4,
-            "30/12/2025": 4,
-            "31/12/2025": 4,
-            "01/01/2026": 4,
+            "30/12/2025": 3,
+            "31/12/2025": 3,
+            "01/01/2026": 3,
+            
+            // Janeiro 2026
             "03/01/2026": 2,
             "10/01/2026": 2,
             "17/01/2026": 2,
+            "18/01/2026": 2,
+            "19/01/2026": 2,
+            "20/01/2026": 2,
             "24/01/2026": 2,
-            "31/01/2026": 2
+            "31/01/2026": 2,
+            
+            // Fevereiro 2026
+            "07/02/2026": 2,
+            "13/02/2026": 5,
+            "14/02/2026": 5,
+            "15/02/2026": 5,
+            "16/02/2026": 5,
+            "17/02/2026": 5,
+            "18/02/2026": 5,
+            "21/02/2026": 2,
+            "28/02/2026": 2,
+            
+            // Março 2026
+            "07/03/2026": 2,
+            "14/03/2026": 2,
+            "21/03/2026": 2,
+            "28/03/2026": 2,
+            
+            // Abril 2026
+            "02/04/2026": 3,
+            "03/04/2026": 3,
+            "04/04/2026": 3,
+            "05/04/2026": 3,
+            "11/04/2026": 2,
+            "18/04/2026": 2,
+            "19/04/2026": 2,
+            "20/04/2026": 2,
+            "21/04/2026": 2,
+            "22/04/2026": 2,
+            "23/04/2026": 2,
+            "25/04/2026": 2,
+            
+            // Maio 2026
+            "02/05/2026": 2,
+            "09/05/2026": 2,
+            "16/05/2026": 2,
+            "23/05/2026": 2,
+            "30/04/2026": 3,
+            "01/05/2026": 3,
+            "02/05/2026": 3,
+            "03/05/2026": 3,
+            "30/05/2026": 2,
+            
+            // Junho 2026
+            "04/06/2026": 3,
+            "05/06/2026": 3,
+            "06/06/2026": 3,
+            "07/06/2026": 3,
+            "13/06/2026": 2,
+            "20/06/2026": 2,
+            "27/06/2026": 2,
+            
+            // Julho 2026
+            "04/07/2026": 2,
+            "11/07/2026": 2,
+            "18/07/2026": 2,
+            "25/07/2026": 2,
+            
+            // Agosto 2026
+            "01/08/2026": 2,
+            "08/08/2026": 2,
+            "15/08/2026": 2,
+            "22/08/2026": 2,
+            "29/08/2026": 2,
+            
+            // Setembro 2026
+            "04/09/2026": 3,
+            "05/09/2026": 3,
+            "06/09/2026": 3,
+            "07/09/2026": 3,
+            "12/09/2026": 2,
+            "19/09/2026": 2,
+            "26/09/2026": 2,
+            
+            // Outubro 2026
+            "03/10/2026": 2,
+            "09/10/2026": 3,
+            "10/10/2026": 3,
+            "11/10/2026": 3,
+            "12/10/2026": 3,
+            "17/10/2026": 2,
+            "24/10/2026": 2,
+            "31/10/2026": 2,
+            
+            // Novembro 2026
+            "07/11/2026": 2,
+            "14/11/2026": 2,
+            "19/11/2026": 3,
+            "20/11/2026": 3,
+            "21/11/2026": 3,
+            "22/11/2026": 3,
+            "28/11/2026": 2,
+            
+            // Dezembro 2026
+            "05/12/2026": 2,
+            "12/12/2026": 2,
+            "19/12/2026": 2,
+            "26/12/2026": 2,
+            "30/12/2026": 4,
+            "31/12/2026": 4,
+            
+            // Janeiro 2027
+            "01/01/2027": 4,
+            "02/01/2027": 4,
+            "03/01/2027": 4
         };
 
         // Funções de formatação e conversão
@@ -673,8 +808,8 @@
         }
 
         function formatCurrency(value) {
-            const numericValue = typeof value === 'string' ? 
-                parseFloat(value.replace(/[^\d.-]/g, '')) : 
+            const numericValue = typeof value === 'string' ?
+                parseFloat(value.replace(/[^\d.-]/g, '')) :
                 Number(value);
             return new Intl.NumberFormat('pt-BR', {
                 style: 'currency',
@@ -687,7 +822,7 @@
             const date = new Date(dateString);
             const offset = date.getTimezoneOffset();
             date.setMinutes(date.getMinutes() + offset);
-            
+
             const day = String(date.getDate()).padStart(2, '0');
             const month = String(date.getMonth() + 1).padStart(2, '0');
             const year = date.getFullYear();
@@ -711,75 +846,121 @@
             const startDate = new Date(startDateStr);
             const endDate = new Date(endDateStr);
             const nights = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
-            
+
             const checkinDateFormatted = formatDateToDDMMAAAA(startDateStr);
             const minLOS = MINLOS_DATA[checkinDateFormatted] || 1;
-            
+
             if (nights < minLOS) {
                 return {
                     valid: false,
                     message: `Para a data de check-in ${checkinDateFormatted}, a estadia mínima é de ${minLOS} noites. Por favor, ajuste suas datas.`
                 };
             }
-            
+
             return { valid: true };
         }
 
         // Funções da API
         const availabilityCache = {};
-        
+
         async function fetchAvailability(startDate, endDate) {
             const cacheKey = `${startDate}-${endDate}`;
-            
+
             if (availabilityCache[cacheKey]) {
                 return availabilityCache[cacheKey];
             }
-            
-            const url = 'https://reservas.desbravador.com.br/reservas/modules/ws/interface.php';
-            const payload = {
-                "wsrolRQ": {
-                    "hotelLoginRQ": {
-                        "slug": "hotel-granja-brasil-resort",
-                        "origem": "rolweb",
-                        "ip": "191.31.44.244"
-                    },
-                    "disponibilidadeRQ": {
-                        "disponibilidade": {
-                            "datainicio": startDate,
-                            "datafim": endDate,
-                            "detalhes": true,
-                            "cdvoucher": 0
+
+            // Usando o seu proxy privado do Cloudflare Workers para máxima estabilidade
+            const proxies = [
+                { url: 'https://broken-hall-6760.paulo-migueoli.workers.dev/', type: 'direct' }
+            ];
+
+            let lastError;
+
+            for (const proxy of proxies) {
+                try {
+                    const targetUrl = 'https://reservas.desbravador.com.br/reservas/modules/ws/interface.php';
+                    let fullUrl;
+                    
+                    if (proxy.type === 'allorigins') {
+                        fullUrl = proxy.url + encodeURIComponent(targetUrl);
+                    } else {
+                        fullUrl = proxy.url + targetUrl;
+                    }
+
+                    const payload = {
+                        "wsrolRQ": {
+                            "hotelLoginRQ": {
+                                "slug": "hotel-granja-brasil-resort",
+                                "origem": "rolweb",
+                                "ip": "191.31.44.244"
+                            },
+                            "disponibilidadeRQ": {
+                                "disponibilidade": {
+                                    "datainicio": startDate,
+                                    "datafim": endDate,
+                                    "detalhes": true,
+                                    "cdvoucher": 0
+                                }
+                            }
+                        }
+                    };
+
+                    let response;
+                    if (proxy.type === 'allorigins') {
+                        // AllOrigins 'get' endpoint embrulha a resposta em um JSON
+                        response = await fetch(fullUrl, {
+                            method: 'POST', // AllOrigins aceita POST para o endpoint /get mas o trata de forma específica
+                            headers: {
+                                'Authorization': 'Basic cm9sRHNsOkJyNDVpMUAyMDE4',
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(payload)
+                        });
+                    } else {
+                        response = await fetch(fullUrl, {
+                            method: 'POST',
+                            headers: {
+                                'Accept': 'application/json',
+                                'Authorization': 'Basic cm9sRHNsOkJyNDVpMUAyMDE4',
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(payload)
+                        });
+                    }
+
+                    if (!response.ok) {
+                        throw new Error(`Erro ${response.status} no proxy ${proxy.url}`);
+                    }
+
+                    let data = await response.json();
+                    
+                    // Se for AllOrigins, o conteúdo real está dentro de data.contents
+                    if (proxy.type === 'allorigins' && data.contents) {
+                        try {
+                            data = JSON.parse(data.contents);
+                        } catch (e) {
+                            // Se não for JSON, pode ser a resposta direta
                         }
                     }
+
+                    availabilityCache[cacheKey] = data;
+                    return data;
+
+                } catch (error) {
+                    console.warn(`Tentativa com proxy ${proxy.url} falhou:`, error.message);
+                    lastError = error;
+                    continue;
                 }
-            };
-
-            try {
-                const response = await fetch(url, {
-                    method: 'POST',
-                    headers: {
-                        'Authorization': 'Basic cm9sRHNsOkJyNDVpMUAyMDE4',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(payload)
-                });
-
-                if (!response.ok) {
-                    throw new Error(`Erro na consulta de disponibilidade: ${response.status}`);
-                }
-
-                const data = await response.json();
-                availabilityCache[cacheKey] = data;
-                return data;
-            } catch (error) {
-                console.error('Erro na API de disponibilidade:', error);
-                throw new Error('Serviço indisponível no momento. Por favor, tente novamente mais tarde.');
             }
+
+            // Se todos os proxies falharem
+            throw new Error('Serviço indisponível no momento. Por favor, tente novamente mais tarde.');
         }
 
         async function fetchHotelRates(startDate, endDate) {
             const url = `https://xeitj4h9fd.execute-api.us-east-1.amazonaws.com/prd/desbravador?start=${encodeURIComponent(startDate)}&end=${encodeURIComponent(endDate)}`;
-            
+
             try {
                 const response = await fetch(url, {
                     method: 'GET',
@@ -788,13 +969,13 @@
                         'Content-Type': 'application/json'
                     }
                 });
-                
+
                 if (!response.ok) {
                     throw new Error(`Erro na consulta: ${response.status}`);
                 }
-                
+
                 const data = await response.json();
-                
+
                 if (!data.data || !data.data.dataFormatted || !Array.isArray(data.data.dataFormatted)) {
                     throw new Error('Formato de dados inválido retornado pela API');
                 }
@@ -803,19 +984,175 @@
                 data.data.dataFormatted = data.data.dataFormatted.map(room => {
                     const valorMedio = convertCurrencyToNumber(room.valorMedio || room.total);
                     const total = convertCurrencyToNumber(room.total);
-                    
+
                     return {
                         ...room,
-                        valorMedio: valorMedio,
-                        total: total
+                        valorMedio: valorMedio * 0.95,  // Aplica 5% de desconto
+                        total: total * 0.95             // Aplica 5% de desconto
                     };
                 });
-                
+
                 return data;
             } catch (error) {
                 console.error('Erro na API de tarifas:', error);
                 throw new Error('Erro ao consultar tarifas. Por favor, tente novamente.');
             }
+        }
+
+        // ========= FUNÇÃO PARA CHAMAR A IA =========
+        async function callHotelAI(message) {
+            try {
+                console.log('Chamando IA para:', message.substring(0, 50) + '...');
+                
+                const response = await fetch('https://intrega-ia.paulo-migueoli.workers.dev/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        prompt: message
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Erro na API: ${response.status}`);
+                }
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    console.log('Resposta IA recebida');
+                    // Formatar a resposta para melhor legibilidade
+                    return formatAIResponse(data.response);
+                } else {
+                    console.error('Erro da API:', data);
+                    return getFallbackResponse(message);
+                }
+            } catch (error) {
+                console.error('Erro ao chamar IA:', error);
+                return getFallbackResponse(message);
+            }
+        }
+
+        // ========= FUNÇÃO PARA FORMATAR RESPOSTAS DA IA =========
+        function formatAIResponse(text) {
+            if (!text) return text;
+            
+            let formattedText = text;
+            
+            // 1. Substituir quebras de linha por tags <br> e parágrafos
+            formattedText = formattedText.replace(/\n\n/g, '</p><p>');
+            formattedText = formattedText.replace(/\n/g, '<br>');
+            
+            // 2. Envolver em parágrafo se não estiver
+            if (!formattedText.startsWith('<p>')) {
+                formattedText = `<p>${formattedText}</p>`;
+            }
+            
+            // 3. Formatar listas com marcadores
+            formattedText = formattedText.replace(/•\s*/g, '<li>');
+            formattedText = formattedText.replace(/<\/li><br>/g, '</li>');
+            
+            // Se detectar itens de lista, criar lista formatada
+            if (formattedText.includes('<li>')) {
+                // Adicionar container de lista
+                formattedText = formattedText.replace(/<li>(.*?)<\/li>/g, function(match, content) {
+                    return `<li style="margin: 5px 0; padding-left: 5px;">${content.trim()}</li>`;
+                });
+                
+                // Envolver em lista não ordenada
+                formattedText = formattedText.replace(/<li>/, '<ul style="margin: 10px 0; padding-left: 20px;">');
+                formattedText = formattedText.replace(/<\/p>$/, '</ul></p>');
+            }
+            
+            // 4. Destacar telefones e números importantes
+            formattedText = formattedText.replace(/(\(\d{2}\)\s*\d{4,5}-\d{4})/g, 
+                '<strong style="color: #075e54;">$1</strong>');
+            formattedText = formattedText.replace(/(\d{2}\s*\d{4,5}-\d{4})/g, 
+                '<strong style="color: #075e54;">$1</strong>');
+            
+            // 5. Destacar nomes de estabelecimentos
+            const estabelecimentos = [
+                "Salão Andrea Novena", "Ateliê da Beleza", "Farley Frossard", 
+                "Divino & Cucina", "Suki Gastronomia Japonesa", "Lenha & Co", 
+                "Farfarello", "Bordeaux Vinhos", "Drogaria Pacheco", "Droga Raia", 
+                "Drogasil", "Hortifruti Itaipava", "Castelo de Itaipava", 
+                "Parque Municipal de Itaipava", "Itaipava Spa", "Academia Granja Brasil", 
+                "Shopping Vilarejo", "Shopping Itaipava", "Estação Locanda", 
+                "Cine Itaipava", "Mimô Pizzaria", "Hotel Granja Brasil"
+            ];
+            
+            estabelecimentos.forEach(estabelecimento => {
+                const regex = new RegExp(estabelecimento, 'g');
+                formattedText = formattedText.replace(regex, '<strong>$&</strong>');
+            });
+            
+            // 6. Formatar endereços
+            formattedText = formattedText.replace(/(Shopping Itaipava|Shopping Vilarejo|Estrada União e Indústria|Estrada Bernardo Coutinho|Rua Francisco dos Santos)/g, 
+                '<span style="color: #666;">$1</span>');
+            
+            // 7. Adicionar estilos para melhor legibilidade
+            formattedText = formattedText.replace(/<p>/g, '<p style="margin: 8px 0; line-height: 1.5;">');
+            
+            // 8. Adicionar container para resposta formatada
+            formattedText = `
+                <div class="ai-response">
+                    ${formattedText}
+                    
+                    <div style="margin-top: 15px; padding-top: 10px; border-top: 1px solid #eee;">
+                        <p style="font-size: 13px; color: #666; margin: 5px 0;">
+                            <em>💡 <strong>Dica:</strong> Clique em um número para ligar diretamente!</em>
+                        </p>
+                    </div>
+                </div>
+            `;
+            
+            return formattedText;
+        }
+
+        // ========= FUNÇÃO PARA ADICIONAR CLICK AOS TELEFONES =========
+        function setupPhoneClicks() {
+            setTimeout(() => {
+                // Encontrar todos os números de telefone na resposta
+                const phoneRegex = /(\(\d{2}\)\s*\d{4,5}-\d{4})|(\d{2}\s*\d{4,5}-\d{4})/g;
+                const messageElements = document.querySelectorAll('.message.bot .message-content');
+                
+                messageElements.forEach(element => {
+                    const html = element.innerHTML;
+                    const updatedHtml = html.replace(phoneRegex, (match) => {
+                        const cleanNumber = match.replace(/\D/g, '');
+                        const telLink = cleanNumber.startsWith('0') ? cleanNumber.substring(1) : cleanNumber;
+                        return `<a href="tel:${telLink}" class="phone-link">${match}</a>`;
+                    });
+                    
+                    if (updatedHtml !== html) {
+                        element.innerHTML = updatedHtml;
+                    }
+                });
+            }, 100);
+        }
+
+        // ========= FUNÇÃO FALLBACK FORMATADA =========
+        function getFallbackResponse(message) {
+            const lowerMessage = message.toLowerCase();
+            
+            // Verificar se é uma pergunta sobre orçamento/reserva
+            if (lowerMessage.includes('orçamento') || lowerMessage.includes('preço') || lowerMessage.includes('valor') || lowerMessage.includes('reserva')) {
+                return generateQuoteForm();
+            }
+            
+            // Fallback genérico
+            return `
+                <p>Desculpe, estou com dificuldades técnicas no momento.</p>
+                <p>Você pode:</p>
+                <div class="quick-actions">
+                    <button class="quick-action" data-action="solicitar-orcamento">💰 Solicitar Orçamento</button>
+                    <button class="quick-action" data-action="informacoes-hotel">🏨 Sobre o Hotel</button>
+                    <button class="whatsapp-button" onclick="openWhatsApp('Olá, preciso de ajuda com o Hotel Granja Brasil')">
+                        💬 WhatsApp
+                    </button>
+                </div>
+            `;
         }
 
         // Variáveis globais
@@ -831,39 +1168,46 @@
         function addMessage(content, isUser = false) {
             const messagesContainer = document.getElementById('chatMessages');
             const typingIndicator = document.getElementById('typingIndicator');
-            
+
             const messageDiv = document.createElement('div');
             messageDiv.className = `message ${isUser ? 'user' : 'bot'}`;
-            
+
             const avatar = document.createElement('div');
             avatar.className = `message-avatar ${isUser ? 'user-avatar' : 'bot-avatar'}`;
             avatar.textContent = isUser ? '👤' : '🤖';
-            
+
             const messageContent = document.createElement('div');
             messageContent.className = 'message-content';
             
-            if (typeof content === 'string') {
+            // Se for uma resposta da IA, garantir que tenha o estilo correto
+            if (!isUser && typeof content === 'string' && content.includes('ai-response')) {
+                messageContent.innerHTML = content;
+            } else if (typeof content === 'string') {
                 messageContent.innerHTML = content;
             } else {
                 messageContent.appendChild(content);
             }
-            
+
             messageDiv.appendChild(avatar);
             messageDiv.appendChild(messageContent);
-            
+
             messagesContainer.insertBefore(messageDiv, typingIndicator);
-            
+
             setTimeout(() => {
                 messageDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }, 50);
-            
+
             conversationHistory.push({
                 content: typeof content === 'string' ? content : content.outerHTML,
                 isUser: isUser,
                 timestamp: new Date()
             });
-            
-            setTimeout(setupButtonListeners, 50);
+
+            // Configurar listeners para números de telefone clicáveis
+            setTimeout(() => {
+                setupButtonListeners();
+                setupPhoneClicks();
+            }, 50);
         }
 
         function showTyping() {
@@ -922,7 +1266,7 @@
             document.getElementById('noAvailabilityIndicator').style.display = 'none';
             document.getElementById('childAgeGroup1').style.display = 'none';
             document.getElementById('childAgeGroup2').style.display = 'none';
-            
+
             // Limpar checkboxes se existirem
             const roomsContainer = document.getElementById('roomsContainer');
             if (roomsContainer) {
@@ -935,7 +1279,7 @@
             const tomorrow = new Date();
             tomorrow.setDate(tomorrow.getDate() + 1);
             const minDate = tomorrow.toISOString().split('T')[0];
-            
+
             const formHTML = `
                 <p><strong>💰 Solicitar Orçamento de Reserva</strong></p>
                 <p>Preencha os dados abaixo para receber seu orçamento personalizado em tempo real:</p>
@@ -950,7 +1294,7 @@
                             <input type="date" id="checkoutDate" min="${minDate}">
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <label>Número de Adultos:</label>
                         <select id="adults" onchange="validateGuestCombination()">
@@ -959,7 +1303,7 @@
                             <option value="3">3 Adultos</option>
                         </select>
                     </div>
-                    
+
                     <div class="children-section">
                         <h4>👶 Crianças (até 17 anos)</h4>
                         <div class="form-group">
@@ -970,7 +1314,7 @@
                                 <option value="2">2 Crianças</option>
                             </select>
                         </div>
-                        
+
                         <div class="form-group" id="childAgeGroup1" style="display: none;">
                             <label>Idade da 1ª Criança:</label>
                             <select id="childAge1" onchange="validateGuestCombination()">
@@ -994,7 +1338,7 @@
                                 <option value="17">17 anos</option>
                             </select>
                         </div>
-                        
+
                         <div class="form-group" id="childAgeGroup2" style="display: none;">
                             <label>Idade da 2ª Criança:</label>
                             <select id="childAge2" onchange="validateGuestCombination()">
@@ -1020,32 +1364,32 @@
                         </div>
                         <div id="invalidCombinationMsg" class="invalid-combination"></div>
                     </div>
-                    
+
                     <div style="background: #e8f4fd; padding: 15px; border-radius: 8px; margin: 15px 0; font-size: 14px;">
                         <p><strong>ℹ️ Informações Importantes:</strong></p>
                         <ul style="margin: 8px 0; padding-left: 20px;">
                             <li>Check-in: ${HOTEL_CONFIG.horarios.checkin} | Check-out: ${HOTEL_CONFIG.horarios.checkout}</li>
                             <li>Hotel 100% não fumante</li>
-			    <li>Animais de estimação não são permitidos</li>
-			    <li>Atestado médico obrigatório para áreas externas ao Hotel (sauna, academia e piscinas) - válido por 6 meses.</li>
+                            <li>Animais de estimação não são permitidos</li>
+                            <li>Atestado médico obrigatório para áreas externas ao Hotel (sauna, academia e piscinas) - válido por 6 meses.</li>
                             <li>O tarifário e a disponibilidade estão sujeitos a alteração sem aviso prévio. As informações fornecidas nesta consulta serão confirmadas pelo agente de reservas no momento da resposta à sua cotação.</li>
                         </ul>
                     </div>
-                    
+
                     <button id="checkAvailabilityBtn" class="quote-button">
                         🔍 Consultar Disponibilidade
                     </button>
-                    
+
                     <div id="loadingIndicator" style="display: none;"></div>
                     <div id="errorIndicator" style="display: none;"></div>
                     <div id="noAvailabilityIndicator" style="display: none;"></div>
-                    
+
                     <div id="roomSelectionSection" style="display: none; margin-top: 15px;"></div>
-                    
+
                     <div id="quoteResultContainer" style="display: none;"></div>
                 </div>
             `;
-            
+
             return formHTML;
         }
 
@@ -1053,7 +1397,7 @@
             const hasChildren = document.getElementById('hasChildren').value;
             const childAgeGroup1 = document.getElementById('childAgeGroup1');
             const childAgeGroup2 = document.getElementById('childAgeGroup2');
-            
+
             if (hasChildren === '1') {
                 childAgeGroup1.style.display = 'block';
                 childAgeGroup2.style.display = 'none';
@@ -1064,7 +1408,7 @@
                 childAgeGroup1.style.display = 'none';
                 childAgeGroup2.style.display = 'none';
             }
-            
+
             validateGuestCombination();
         }
 
@@ -1076,66 +1420,66 @@
             const childAge2 = childrenCount === 2 ? parseInt(document.getElementById('childAge2').value) : 0;
             const errorMsg = document.getElementById('invalidCombinationMsg');
             const checkBtn = document.getElementById('checkAvailabilityBtn');
-            
+
             errorMsg.style.display = 'none';
             checkBtn.disabled = false;
-            
+
             if (adults === 0 && hasChildren) {
                 errorMsg.textContent = 'Para reservas com crianças, é necessário pelo menos 1 adulto';
                 errorMsg.style.display = 'block';
                 checkBtn.disabled = true;
                 return false;
             }
-            
+
             if (adults + childrenCount > 3) {
                 errorMsg.textContent = 'Capacidade máxima excedida (máximo 3 hóspedes)';
                 errorMsg.style.display = 'block';
                 checkBtn.disabled = true;
                 return false;
             }
-            
+
             return true;
         }
 
         function updateRoomOptions() {
             if (!validateGuestCombination()) return;
             if (!currentAvailabilityData) return;
-            
+
             const adults = parseInt(document.getElementById('adults').value);
             const hasChildren = document.getElementById('hasChildren').value !== '0';
             const childrenCount = hasChildren ? parseInt(document.getElementById('hasChildren').value) : 0;
             const childAge1 = hasChildren ? parseInt(document.getElementById('childAge1').value) : 0;
             const childAge2 = childrenCount === 2 ? parseInt(document.getElementById('childAge2').value) : 0;
             const totalGuests = adults + childrenCount;
-            
+
             const infoDiv = document.getElementById('roomSelectionInfo');
-            
+
             const startDate = document.getElementById('checkinDate').value;
             const endDate = document.getElementById('checkoutDate').value;
             const datesToCheck = getDatesBetween(startDate, endDate);
-            
+
             let infoMessage = '';
             let hasAvailableOptions = false;
-            
+
             // Atualizar checkboxes existentes
             const checkboxes = document.querySelectorAll('#roomsContainer input[type="checkbox"]');
             checkboxes.forEach(checkbox => {
                 const roomData = JSON.parse(checkbox.value);
                 const roomName = roomData.descricao.toLowerCase();
                 const roomCode = roomData.codigo;
-                
+
                 const isSuite = roomName.includes('suíte') || roomName.includes('suite');
                 const isSuperior = roomName.includes('apartamento superior');
-                
+
                 let isAvailable = true;
                 let reason = '';
-                
+
                 // Verificar disponibilidade para todas as datas
                 const hasAvailability = datesToCheck.every(date => {
                     return currentAvailabilityData.wsrolRS.disponibilidadeRS.disponibilidade.result[roomCode] &&
                            currentAvailabilityData.wsrolRS.disponibilidadeRS.disponibilidade.result[roomCode].diaria[date] > 0;
                 });
-                
+
                 if (!hasAvailability) {
                     isAvailable = false;
                     reason = ' (indisponível para todas as datas selecionadas)';
@@ -1146,7 +1490,7 @@
                     isAvailable = false;
                     reason = ' (crianças até 6 anos exigem suíte com sofá-cama)';
                 }
-                
+
                 if (!isAvailable) {
                     checkbox.disabled = true;
                     checkbox.parentElement.style.opacity = '0.5';
@@ -1160,17 +1504,17 @@
                     hasAvailableOptions = true;
                 }
             });
-            
+
             if (hasChildren && (childAge1 <= 6 || (childrenCount === 2 && childAge2 <= 6))) {
                 infoMessage = 'Nota: Crianças até 6 anos exigem suítes com sofá-cama (Sênior ou Master)';
             } else if (hasChildren && (childAge1 > 6 || (childrenCount === 2 && childAge2 > 6))) {
                 infoMessage = 'Nota: Criança acima de 6 anos será cobrada como hóspede extra (R$ 102/dia)';
             }
-            
+
             if (infoDiv) {
                 infoDiv.textContent = infoMessage;
             }
-            
+
             // Retorna se ainda há opções disponíveis
             return hasAvailableOptions;
         }
@@ -1178,12 +1522,12 @@
         async function checkAvailability() {
             if (isCheckingAvailability) return;
             isCheckingAvailability = true;
-            
+
             if (!validateGuestCombination()) {
                 isCheckingAvailability = false;
                 return;
             }
-            
+
             const startDate = document.getElementById('checkinDate').value;
             const endDate = document.getElementById('checkoutDate').value;
             const adults = parseInt(document.getElementById('adults').value);
@@ -1191,13 +1535,13 @@
             const childrenCount = hasChildren ? parseInt(document.getElementById('hasChildren').value) : 0;
             const childAge1 = hasChildren ? parseInt(document.getElementById('childAge1').value) : 0;
             const childAge2 = childrenCount === 2 ? parseInt(document.getElementById('childAge2').value) : 0;
-            
+
             const loadingIndicator = document.getElementById('loadingIndicator');
             const errorIndicator = document.getElementById('errorIndicator');
             const noAvailabilityIndicator = document.getElementById('noAvailabilityIndicator');
             const roomSelectionSection = document.getElementById('roomSelectionSection');
             const quoteResultContainer = document.getElementById('quoteResultContainer');
-            
+
             // Validações básicas
             if (!startDate || !endDate) {
                 errorIndicator.innerHTML = showError('Por favor, selecione as datas de check-in e check-out').outerHTML;
@@ -1210,12 +1554,12 @@
                 enableDateInputs(); // Habilitar campos novamente em caso de erro
                 return;
             }
-            
+
             // Validação de antecedência de 1 dia
             const today = new Date();
             today.setHours(0, 0, 0, 0);
             const checkinDate = new Date(startDate);
-            
+
             if (checkinDate <= today) {
                 errorIndicator.innerHTML = showError('O check-in deve ser feito com pelo menos 1 dia de antecedência. Por favor, selecione uma data a partir de amanhã.').outerHTML;
                 errorIndicator.style.display = 'block';
@@ -1227,7 +1571,7 @@
                 enableDateInputs(); // Habilitar campos novamente em caso de erro
                 return;
             }
-            
+
             if (new Date(endDate) <= new Date(startDate)) {
                 errorIndicator.innerHTML = showError('A data de check-out deve ser posterior à data de check-in').outerHTML;
                 errorIndicator.style.display = 'block';
@@ -1239,7 +1583,7 @@
                 enableDateInputs(); // Habilitar campos novamente em caso de erro
                 return;
             }
-            
+
             // Verificar estadia mínima (minLOS)
             const minLOSCheck = checkMinLOS(startDate, endDate);
             if (!minLOSCheck.valid) {
@@ -1253,23 +1597,23 @@
                 enableDateInputs(); // Habilitar campos novamente em caso de erro
                 return;
             }
-            
+
             loadingIndicator.innerHTML = showLoading('Consultando disponibilidade, aguarde...').outerHTML;
             loadingIndicator.style.display = 'block';
             errorIndicator.style.display = 'none';
             noAvailabilityIndicator.style.display = 'none';
             roomSelectionSection.style.display = 'none';
             quoteResultContainer.style.display = 'none';
-            
+
             try {
                 const formattedStartDate = formatDateToDDMMAAAA(startDate);
                 const formattedEndDate = formatDateToDDMMAAAA(endDate);
-                
+
                 let availabilityData;
                 try {
                     availabilityData = await fetchAvailability(formattedStartDate, formattedEndDate);
                     currentAvailabilityData = availabilityData;
-                    
+
                     // Registrar no histórico
                     availabilityHistory.push({
                         timestamp: new Date(),
@@ -1294,7 +1638,7 @@
                 let apiData;
                 try {
                     apiData = await fetchHotelRates(formattedStartDate, formattedEndDate);
-                    
+
                     if (!apiData.data || !apiData.data.dataFormatted || !Array.isArray(apiData.data.dataFormatted)) {
                         throw new Error('Formato de dados inválido retornado pela API');
                     }
@@ -1302,7 +1646,7 @@
                     console.error('Erro na API de tarifas:', error);
                     throw new Error('Erro ao consultar tarifas. Por favor, tente novamente.');
                 }
-                
+
                 const availableRooms = apiData.data.dataFormatted.filter(room => {
                     const roomCode = room.codigo;
                     const roomName = room.descricao.toLowerCase();
@@ -1310,28 +1654,28 @@
                     const isSuperior = roomName.includes('apartamento superior');
                     const datesToCheck = getDatesBetween(startDate, endDate);
                     const totalGuests = adults + childrenCount;
-                    
+
                     const isAvailableForDates = datesToCheck.every(date => {
                         return availabilityData.wsrolRS.disponibilidadeRS.disponibilidade.result[roomCode] &&
                                availabilityData.wsrolRS.disponibilidadeRS.disponibilidade.result[roomCode].diaria[date] > 0;
                     });
-                    
+
                     if (!isAvailableForDates) return false;
                     if (isSuperior && totalGuests > 2) return false;
                     if (hasChildren && (childAge1 <= 6 || (childrenCount === 2 && childAge2 <= 6)) && !isSuite) return false;
-                    
+
                     return true;
                 });
-                
+
                 if (availableRooms.length === 0) {
                     let message = "Não há acomodações disponíveis para o período selecionado com a configuração de hóspedes informada.";
-                    
+
                     if (hasChildren && (childAge1 <= 6 || (childrenCount === 2 && childAge2 <= 6))) {
                         message += " Crianças até 6 anos exigem suítes com sofá-cama (Sênior ou Master).";
                     } else if (adults > 2) {
                         message += " Para 3 adultos, apenas suítes Master ou Sênior estão disponíveis.";
                     }
-                    
+
                     noAvailabilityIndicator.innerHTML = showNoAvailability(message).outerHTML;
                     noAvailabilityIndicator.style.display = 'block';
                     loadingIndicator.style.display = 'none';
@@ -1340,7 +1684,7 @@
                     enableDateInputs(); // Habilitar campos novamente em caso de erro
                     return;
                 }
-                
+
                 // Esconde o loading antes de exibir as opções
                 loadingIndicator.style.display = 'none';
                 displayAvailableRooms(apiData, startDate, endDate, availableRooms, adults, hasChildren, childAge1, childAge2);
@@ -1360,32 +1704,49 @@
             const roomSelectionSection = document.getElementById('roomSelectionSection');
             const quoteResultContainer = document.getElementById('quoteResultContainer');
             const loadingIndicator = document.getElementById('loadingIndicator');
-            
+
             loadingIndicator.style.display = 'none';
             roomSelectionSection.style.display = 'block';
             quoteResultContainer.style.display = 'none';
-            
+
             // Criar container para as opções de quarto
             const roomsContainer = document.createElement('div');
             roomsContainer.id = 'roomsContainer';
             roomsContainer.style.marginBottom = '15px';
-            
+
             // Limpar seção de seleção de quartos
             roomSelectionSection.innerHTML = '';
             roomSelectionSection.appendChild(roomsContainer);
-            
+
             // Adicionar título
             const title = document.createElement('p');
             title.innerHTML = '<strong>Selecione as acomodações desejadas:</strong>';
             roomsContainer.appendChild(title);
-            
-            // Adicionar checkboxes para cada quarto disponível
-            availableRooms.forEach(room => {
+
+            // 1. Primeiro filtra e ordena os quartos na ordem específica
+            const roomTypesInOrder = [
+                { name: "Apartamento Superior", code: "SUP" },
+                { name: "Suíte Sênior", code: "SEN" },
+                { name: "Suíte Master (Cobertura)", code: "MAS" }
+            ];
+
+            // 2. Criar array ordenado
+            const orderedRooms = [];
+            roomTypesInOrder.forEach(type => {
+                const room = availableRooms.find(r =>
+                    r.descricao.includes(type.name) ||
+                    r.codigo === type.code
+                );
+                if (room) orderedRooms.push(room);
+            });
+
+            // 3. Adicionar os quartos na ordem correta
+            orderedRooms.forEach(room => {
                 const roomDiv = document.createElement('div');
                 roomDiv.style.display = 'flex';
                 roomDiv.style.alignItems = 'center';
                 roomDiv.style.margin = '8px 0';
-                
+
                 const checkbox = document.createElement('input');
                 checkbox.type = 'checkbox';
                 checkbox.id = `room-${room.codigo}`;
@@ -1397,33 +1758,33 @@
                     codigo: room.codigo
                 });
                 checkbox.style.marginRight = '10px';
-                
+
                 const label = document.createElement('label');
                 label.htmlFor = `room-${room.codigo}`;
                 label.textContent = `${room.descricao} (${formatCurrency(room.valorMedio)})`;
                 label.style.flex = '1';
-                
+
                 roomDiv.appendChild(checkbox);
                 roomDiv.appendChild(label);
                 roomsContainer.appendChild(roomDiv);
             });
-            
-            // Adicionar botão "Incluir ao orçamento"
+
+            // Restante do código permanece igual...
             const addButton = document.createElement('button');
             addButton.id = 'addToQuoteBtn';
             addButton.className = 'quote-button';
             addButton.textContent = '➕ Incluir ao orçamento';
             addButton.style.marginTop = '10px';
             addButton.style.width = '100%';
-            
-            addButton.addEventListener('click', function() {
+
+            addButton.addEventListener('click', function () {
                 const checkboxes = document.querySelectorAll('#roomsContainer input[type="checkbox"]:checked');
-                
+
                 if (checkboxes.length === 0) {
                     alert('Por favor, selecione pelo menos uma acomodação.');
                     return;
                 }
-                
+
                 checkboxes.forEach(checkbox => {
                     try {
                         const selectedRoom = JSON.parse(checkbox.value);
@@ -1432,35 +1793,33 @@
                         console.error('Erro ao processar seleção de quarto:', e);
                     }
                 });
-                
-                // Desmarcar os checkboxes após adicionar
+
                 checkboxes.forEach(checkbox => {
                     checkbox.checked = false;
                 });
             });
-            
+
             roomSelectionSection.appendChild(addButton);
-            
         }
 
         function askForAdditionalRoom(selectedRoom, startDate, endDate, adults, hasChildren, childAge1, childAge2) {
             // Verificar disponibilidade antes de adicionar
             const roomCode = selectedRoom.codigo;
             const datesToCheck = getDatesBetween(startDate, endDate);
-            
+
             // Verificar se há disponibilidade para todas as datas
             const hasAvailability = datesToCheck.every(date => {
                 return currentAvailabilityData.wsrolRS.disponibilidadeRS.disponibilidade.result[roomCode] &&
                        currentAvailabilityData.wsrolRS.disponibilidadeRS.disponibilidade.result[roomCode].diaria[date] > 0;
             });
-            
+
             if (!hasAvailability) {
                 const quoteResultContainer = document.getElementById('quoteResultContainer');
                 quoteResultContainer.innerHTML = showError("Não há mais disponibilidade para esta acomodação nas datas selecionadas.").outerHTML;
                 quoteResultContainer.style.display = 'block';
                 return;
             }
-            
+
             // Adicionar ao orçamento
             selectedRooms.push({
                 room: selectedRoom,
@@ -1484,13 +1843,50 @@
             // Obter disponibilidade atualizada para todas as acomodações
             const roomTypes = [
                 { name: "Apartamento Superior", code: "SUP" },
-                { name: "Suíte Sênior", code: "SEN" }, 
+                { name: "Suíte Sênior", code: "SEN" },
                 { name: "Suíte Master (Cobertura)", code: "MAS" }
             ];
-            
+
+            // Criar prévia do carrinho de compras
+            let cartPreview = `
+                <div style="background: #f8f9fa; border-left: 4px solid #075e54; padding: 10px; margin: 10px 0; border-radius: 4px;">
+                    <p style="font-weight: bold; margin-bottom: 5px;">🛒 Seu Orçamento Parcial</p>
+                    <div style="max-height: 200px; overflow-y: auto;">
+            `;
+
+            selectedRooms.forEach((room, index) => {
+                const nights = Math.ceil((new Date(room.endDate) - new Date(room.startDate)) / (1000 * 60 * 60 * 24));
+                const total = room.room.valorMedio * nights;
+
+                cartPreview += `
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid #eee;">
+                        <div>
+                            <p style="margin: 0; font-size: 14px;"><strong>${index + 1}. ${room.room.descricao}</strong></p>
+                            <p style="margin: 0; font-size: 12px;">${room.adults} adulto(s)${room.hasChildren ? ` + ${room.childrenCount} criança(s)` : ''}</p>
+                        </div>
+                        <div style="text-align: right;">
+                            <p style="margin: 0; font-size: 14px;">${formatCurrency(total)}</p>
+                            <p style="margin: 0; font-size: 12px;">${nights} noite(s)</p>
+                        </div>
+                    </div>
+                `;
+            });
+
+            cartPreview += `
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-top: 10px; padding-top: 10px; border-top: 1px solid #ddd;">
+                        <p style="margin: 0; font-weight: bold;">Subtotal:</p>
+                        <p style="margin: 0; font-weight: bold;">${formatCurrency(selectedRooms.reduce((sum, room) => {
+                            const nights = Math.ceil((new Date(room.endDate) - new Date(room.startDate)) / (1000 * 60 * 60 * 24));
+                            return sum + (room.room.valorMedio * nights);
+                        }, 0))}</p>
+                    </div>
+                </div>
+            `;
+
             let availabilityMessage = '<div style="background: #f8f9fa; border-left: 4px solid #075e54; padding: 10px; margin: 10px 0; border-radius: 4px;">';
             availabilityMessage += '<p style="font-weight: bold; margin-bottom: 5px;">📊 Disponibilidade restante para o período:</p>';
-            
+
             roomTypes.forEach(roomType => {
                 const minAvailability = Math.min(
                     ...datesToCheck.map(date => {
@@ -1498,18 +1894,18 @@
                         return roomData ? (roomData.diaria[date] || 0) : 0;
                     })
                 );
-                
+
                 if (minAvailability > 0) {
                     availabilityMessage += `<p style="margin: 3px 0;">${roomType.name}: <strong>${minAvailability} unidade(s)</strong></p>`;
                 } else {
                     availabilityMessage += `<p style="margin: 3px 0; color: #999;">${roomType.name}: <strong>0 unidades</strong></p>`;
                 }
             });
-            
+
             availabilityMessage += '</div>';
 
             const questionDiv = document.createElement('div');
-            
+
             if (roomTypes.every(rt => {
                 const minAvail = Math.min(...datesToCheck.map(date => {
                     const rd = currentAvailabilityData.wsrolRS.disponibilidadeRS.disponibilidade.result[rt.code];
@@ -1519,10 +1915,11 @@
             })) {
                 // Caso não haja mais disponibilidade
                 questionDiv.innerHTML = `
+                    ${cartPreview}
                     <hr style="margin: 15px 0; border: 1px solid rgba(255,255,255,0.3);">
-		    <p>✅ <strong>Acomodação adicionada:</strong> ${selectedRoom.descricao}</p>
                     <div style="background: #fff8e1; padding: 10px; border-radius: 5px; margin: 10px 0;">
                         <p>⚠️ <strong>Não há mais disponibilidade para o período solicitado.</strong></p>
+                        <p>⚠️ <strong>Última unidade disponível para o período solicitado.</strong></p>
                     </div>
                     <div class="quick-actions">
                         <button class="quick-action" id="finishReservationBtn">Gerar Orçamento</button>
@@ -1531,9 +1928,9 @@
             } else {
                 // Caso ainda haja disponibilidade
                 questionDiv.innerHTML = `
-                    <hr style="margin: 15px 0; border: 1px solid rgba(255,255,255,0.3);">
-		    <p>✅ <strong>Acomodação adicionada:</strong> ${selectedRoom.descricao}</p>
+                    ${cartPreview}
                     ${availabilityMessage}
+                    <hr style="margin: 15px 0; border: 1px solid rgba(255,255,255,0.3);">
                     <p>Deseja incluir outra acomodação à sua reserva?</p>
                     <div class="quick-actions">
                         <button class="quick-action" id="addAnotherRoomBtn">Sim</button>
@@ -1562,22 +1959,22 @@
 
         function updateAvailabilityAfterSelection(roomCode) {
             if (!currentAvailabilityData || !roomCode) return;
-            
+
             // Registrar estado anterior no histórico
             const beforeUpdate = JSON.parse(JSON.stringify(currentAvailabilityData));
-            
+
             const datesToUpdate = getDatesBetween(
                 document.getElementById('checkinDate').value,
                 document.getElementById('checkoutDate').value
             );
-            
+
             datesToUpdate.forEach(date => {
                 if (currentAvailabilityData.wsrolRS.disponibilidadeRS.disponibilidade.result[roomCode] &&
                     currentAvailabilityData.wsrolRS.disponibilidadeRS.disponibilidade.result[roomCode].diaria[date] > 0) {
                     currentAvailabilityData.wsrolRS.disponibilidadeRS.disponibilidade.result[roomCode].diaria[date] -= 1;
                 }
             });
-            
+
             // Registrar no histórico
             availabilityHistory.push({
                 timestamp: new Date(),
@@ -1585,29 +1982,29 @@
                 before: beforeUpdate,
                 after: JSON.parse(JSON.stringify(currentAvailabilityData))
             });
-            
+
             // Atualizar imediatamente as opções de quarto disponíveis
             updateRoomOptions();
         }
 
         function showFinalQuote() {
             if (selectedRooms.length === 0) return;
-            
+
             const quoteResultContainer = document.getElementById('quoteResultContainer');
             const startDate = selectedRooms[0].startDate;
             const endDate = selectedRooms[0].endDate;
-            
+
             const start = new Date(startDate);
             const end = new Date(endDate);
             const offset = start.getTimezoneOffset();
             start.setMinutes(start.getMinutes() + offset);
             end.setMinutes(end.getMinutes() + offset);
             const nights = Math.ceil((end - start) / (1000 * 60 * 60 * 24));
-            
+
             let totalRooms = 0;
             let totalExtraGuests = 0;
             let roomsDescription = '';
-            
+
             selectedRooms.forEach((reservation, index) => {
                 const room = reservation.room;
                 const adults = reservation.adults;
@@ -1615,23 +2012,23 @@
                 const childrenCount = reservation.childrenCount;
                 const childAge1 = reservation.childAge1;
                 const childAge2 = reservation.childrenCount === 2 ? reservation.childAge2 : 0;
-                
+
                 const dailyRate = room.valorMedio;
-                
+
                 let extraGuestFee = 0;
                 let extraGuestMessage = '';
-                
+
                 if (hasChildren) {
                     const totalPayingGuests = adults + (childAge1 > 6 ? 1 : 0) + (childrenCount === 2 && childAge2 > 6 ? 1 : 0);
-                    
+
                     if (totalPayingGuests > 2) {
                         const extraGuests = totalPayingGuests - 2;
                         extraGuestFee = 102 * nights * extraGuests;
-                        
+
                         const childAges = [];
                         if (childAge1 > 6) childAges.push(childAge1);
                         if (childrenCount === 2 && childAge2 > 6) childAges.push(childAge2);
-                        
+
                         if (childAges.length > 0) {
                             extraGuestMessage = `<p><strong>👶 Criança(s) (${childAges.join(' e ')} anos):</strong> ${formatCurrency(extraGuestFee)} (R$ 102/dia por hóspede extra acima do limite de 2)</p>`;
                         }
@@ -1640,10 +2037,10 @@
                     extraGuestFee = 102 * nights;
                     extraGuestMessage = `<p><strong>👥 Hóspede extra:</strong> ${formatCurrency(extraGuestFee)} (R$ 102/dia)</p>`;
                 }
-                
+
                 totalRooms += (dailyRate * nights);
                 totalExtraGuests += extraGuestFee;
-                
+
                 roomsDescription += `
                     <hr class="accommodation-divider">
                     <div style="margin-bottom: 15px; padding-bottom: 15px;">
@@ -1654,46 +2051,46 @@
                     </div>
                 `;
             });
-            
+
             const subtotal = totalRooms + totalExtraGuests;
-	    const total = subtotal;
-            
+            const total = subtotal;
+
             const formatDisplayDate = (dateString) => {
                 const date = new Date(dateString);
                 date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
                 return date.toLocaleDateString('pt-BR');
             };
-            
+
             quoteResultContainer.innerHTML = `
                 <div class="quote-result">
                     <h3>📋 Seu Orçamento Final - Hotel Granja Brasil</h3>
                     <hr style="margin: 15px 0; border: 1px solid rgba(255,255,255,0.3);">
                     <p><strong>📅 Período:</strong> ${formatDisplayDate(startDate)} a ${formatDisplayDate(endDate)}</p>
                     <p><strong>🌙 Noites:</strong> ${nights}</p>
-                    
+
                     ${roomsDescription}
-                    
+
                     <hr style="margin: 15px 0; border: 1px solid rgba(255,255,255,0.3);">
                     <p><strong>💵 Subtotal Acomodações:</strong> ${formatCurrency(totalRooms)}</p>
                     <p><strong>👥 Taxas de Hóspedes Extras:</strong> ${formatCurrency(totalExtraGuests)}</p>
                     <h4 style="font-size: 20px; margin-top: 10px;"><strong>🎯 TOTAL: ${formatCurrency(total)}</strong></h4>
-                    
+
                     <p style="margin-top: 15px; font-size: 14px; opacity: 0.9;">
                         * ${HOTEL_CONFIG.politicas.cancelamento}<br>
                         * ${HOTEL_CONFIG.politicas.criancas}<br>
                         * ${HOTEL_CONFIG.politicas.hospedeExtra}
                     </p>
-                    
+
                     <div class="form-group" style="margin-top: 20px;">
                         <input type="text" id="customerName" placeholder="Seu nome completo">
                     </div>
-                    
+
                     <button id="whatsappBtn" class="whatsapp-button">
                         ✅ Fechar Reserva via WhatsApp
                     </button>
                 </div>
             `;
-            
+
             currentQuoteData = {
                 rooms: selectedRooms,
                 startDate,
@@ -1703,21 +2100,21 @@
                 totalExtraGuests,
                 total
             };
-            
+
             setupButtonListeners();
         }
 
         function sendQuoteToWhatsApp() {
             if (!currentQuoteData) return;
-            
+
             const customerName = document.getElementById('customerName').value;
             if (!customerName) {
                 alert('Por favor, informe seu nome completo para prosseguir com a reserva.');
                 return;
             }
-            
+
             currentQuoteData.customerName = customerName;
-            
+
             let roomsDescription = '';
             currentQuoteData.rooms.forEach((reservation, index) => {
                 const room = reservation.room;
@@ -1726,19 +2123,19 @@
                 const childrenCount = reservation.childrenCount;
                 const childAge1 = reservation.childAge1;
                 const childAge2 = reservation.childrenCount === 2 ? reservation.childAge2 : 0;
-                
+
                 let extraGuestMessage = '';
                 if (hasChildren) {
                     const totalPayingGuests = adults + (childAge1 > 6 ? 1 : 0) + (childrenCount === 2 && childAge2 > 6 ? 1 : 0);
-                    
+
                     if (totalPayingGuests > 2) {
                         const extraGuests = totalPayingGuests - 2;
                         const extraGuestFee = 102 * currentQuoteData.nights * extraGuests;
-                        
+
                         const childAges = [];
                         if (childAge1 > 6) childAges.push(childAge1);
                         if (childrenCount === 2 && childAge2 > 6) childAges.push(childAge2);
-                        
+
                         if (childAges.length > 0) {
                             extraGuestMessage = `\n👶 *Criança(s) (${childAges.join(' e ')} anos):* ${formatCurrency(extraGuestFee)} (hóspede extra)`;
                         }
@@ -1747,7 +2144,7 @@
                     const extraGuestFee = 102 * currentQuoteData.nights;
                     extraGuestMessage = `\n👥 *Hóspede extra:* ${formatCurrency(extraGuestFee)}`;
                 }
-                
+
                 roomsDescription += `
 🏨 *Acomodação ${index + 1}:* ${room.descricao}
 👥 *Hóspedes:* ${adults} adulto(s)${hasChildren ? ` + ${childrenCount} criança(s) (${childAge1}${childrenCount === 2 ? ` e ${childAge2}` : ''} anos)` : ''}
@@ -1755,7 +2152,7 @@
 
 `;
             });
-            
+
             const message = `
 🏨 *SOLICITAÇÃO DE RESERVA - HOTEL GRANJA BRASIL*
 
@@ -1773,7 +2170,7 @@ ${roomsDescription}
 
 📝 Cliente interessado em fechar a reserva!
             `.trim();
-            
+
             openWhatsApp(message);
         }
 
@@ -1809,10 +2206,10 @@ Atenciosamente,
 [Sua empresa]
 [Seu telefone]
             `.trim());
-            
+
             const mailtoUrl = `mailto:${HOTEL_CONFIG.emailCorporativo}?subject=${subject}&body=${body}`;
             window.open(mailtoUrl, '_blank');
-            
+
             showTyping();
             setTimeout(() => {
                 hideTyping();
@@ -1828,13 +2225,67 @@ Atenciosamente,
             }, 1000);
         }
 
+        // ========= FUNÇÃO PRINCIPAL PARA ENVIAR MENSAGENS =========
+        async function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+
+            if (!message) return;
+
+            // Verificar se é uma mensagem de orçamento/reserva
+            const lowerMessage = message.toLowerCase();
+            const isQuoteRelated = lowerMessage.includes('orçamento') || 
+                                  lowerMessage.includes('preço') || 
+                                  lowerMessage.includes('valor') || 
+                                  lowerMessage.includes('reserva') ||
+                                  lowerMessage.includes('disponibilidade') ||
+                                  lowerMessage.includes('tarifa') ||
+                                  lowerMessage.includes('quarto') ||
+                                  lowerMessage.includes('acomodação');
+
+            addMessage(message, true);
+            input.value = '';
+
+            if (isQuoteRelated) {
+                // Usar o processamento local para orçamentos
+                showTyping();
+                setTimeout(() => {
+                    const response = generateQuoteForm();
+                    hideTyping();
+                    addMessage(response);
+                }, 800);
+            } else {
+                // Usar a IA para outras perguntas
+                showTyping();
+                
+                try {
+                    const aiResponse = await callHotelAI(message);
+                    hideTyping();
+                    addMessage(aiResponse);
+                } catch (error) {
+                    hideTyping();
+                    addMessage(`
+                        <p>Desculpe, ocorreu um erro ao processar sua mensagem.</p>
+                        <p>Você pode:</p>
+                        <div class="quick-actions">
+                            <button class="quick-action" data-action="solicitar-orcamento">💰 Solicitar Orçamento</button>
+                            <button class="quick-action" onclick="openWhatsApp('Olá, preciso de ajuda com o Hotel Granja Brasil')">
+                                💬 WhatsApp
+                            </button>
+                        </div>
+                    `);
+                }
+            }
+        }
+
+        // ========= FUNÇÃO ORIGINAL processUserMessage =========
         async function processUserMessage(message) {
             const lowerMessage = message.toLowerCase();
-            
+
             if (lowerMessage.includes('orçamento') || lowerMessage.includes('preço') || lowerMessage.includes('valor') || lowerMessage.includes('tarifa')) {
                 return generateQuoteForm();
             }
-            
+
             if (lowerMessage.includes('localização') || lowerMessage.includes('endereço') || lowerMessage.includes('onde fica')) {
                 return `
                     <p><strong>📍 Localização Privilegiada</strong></p>
@@ -1846,7 +2297,7 @@ Atenciosamente,
                     </div>
                 `;
             }
-            
+
             if (lowerMessage.includes('serviço') || lowerMessage.includes('facilidade') || lowerMessage.includes('comodidade') || lowerMessage.includes('lazer')) {
                 return `
                     <p><strong>🌟 Lazer para Todos os Perfis</strong></p>
@@ -1860,7 +2311,7 @@ Atenciosamente,
                     </div>
                 `;
             }
-            
+
             if (lowerMessage.includes('contato') || lowerMessage.includes('telefone') || lowerMessage.includes('whatsapp')) {
                 return `
                     <p><strong>📞 Entre em Contato</strong></p>
@@ -1875,7 +2326,7 @@ Atenciosamente,
                     </button>
                 `;
             }
-            
+
             if (lowerMessage.includes('política') || lowerMessage.includes('regra') || lowerMessage.includes('cancelamento') || lowerMessage.includes('criança')) {
                 return `
                     <p><strong>📋 Políticas do Hotel</strong></p>
@@ -1892,7 +2343,7 @@ Atenciosamente,
                     </div>
                 `;
             }
-            
+
             if (lowerMessage.includes('horário') || lowerMessage.includes('check') || lowerMessage.includes('piscina')) {
                 return `
                     <p><strong>⏰ Horários de Funcionamento</strong></p>
@@ -1908,14 +2359,14 @@ Atenciosamente,
                     </div>
                 `;
             }
-            
+
             if (lowerMessage.includes('informação') || lowerMessage.includes('sobre') || lowerMessage.includes('hotel')) {
                 return `
                     <div style="background: #f8f9fa; border-radius: 8px; overflow: hidden; margin: 15px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
                         <div style="background: #075e54; color: white; padding: 12px 15px;">
                             <h3 style="margin: 0; font-size: 18px;">🏨 Nossas Acomodações</h3>
                         </div>
-                        
+
                         <div style="padding: 15px;">
                             <!-- Apartamento Superior -->
                             <div style="margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
@@ -1925,14 +2376,14 @@ Atenciosamente,
                                     </div>
                                     <h4 style="margin: 0; color: #075e54;">Apartamento Superior</h4>
                                 </div>
-                                
+
                                 <div style="display: flex; flex-wrap: wrap; gap: 15px;">
                                     <div style="flex: 1; min-width: 200px;">
                                         <p style="margin: 5px 0; color: #555;"><strong>👥 Capacidade:</strong> Até 2 pessoas</p>
                                         <p style="margin: 5px 0; color: #555;"><strong>📏 Área:</strong> 26 m²</p>
                                         <p style="margin: 5px 0; color: #555;"><strong>🛌 Camas:</strong> 2 camas separadas (padrão viúva)</p>
                                     </div>
-                                    
+
                                     <div style="flex: 1; min-width: 200px;">
                                         <p style="margin: 5px 0; color: #555;"><strong>🌟 Destaques:</strong></p>
                                         <ul style="margin: 5px 0; padding-left: 20px; color: #555;">
@@ -1940,7 +2391,7 @@ Atenciosamente,
                                             <li>Mesa de trabalho</li>
                                         </ul>
                                     </div>
-                                    
+
                                     <div style="flex: 1; min-width: 200px;">
                                         <p style="margin: 5px 0; color: #555;"><strong>🛁 Comodidades:</strong></p>
                                         <ul style="margin: 5px 0; padding-left: 20px; color: #555;">
@@ -1951,7 +2402,7 @@ Atenciosamente,
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <!-- Suíte Sênior -->
                             <div style="margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
                                 <div style="display: flex; align-items: center; margin-bottom: 10px;">
@@ -1960,14 +2411,14 @@ Atenciosamente,
                                     </div>
                                     <h4 style="margin: 0; color: #075e54;">Suíte Sênior</h4>
                                 </div>
-                                
+
                                 <div style="display: flex; flex-wrap: wrap; gap: 15px;">
                                     <div style="flex: 1; min-width: 200px;">
                                         <p style="margin: 5px 0; color: #555;"><strong>👥 Capacidade:</strong> Até 3 pessoas</p>
                                         <p style="margin: 5px 0; color: #555;"><strong>📏 Área:</strong> 41 m²</p>
                                         <p style="margin: 5px 0; color: #555;"><strong>🛌 Camas:</strong> 1 cama King Size + sofá-cama</p>
                                     </div>
-                                    
+
                                     <div style="flex: 1; min-width: 200px;">
                                         <p style="margin: 5px 0; color: #555;"><strong>🌟 Destaques:</strong></p>
                                         <ul style="margin: 5px 0; padding-left: 20px; color: #555;">
@@ -1976,7 +2427,7 @@ Atenciosamente,
                                             <li>Mesa de trabalho</li>
                                         </ul>
                                     </div>
-                                    
+
                                     <div style="flex: 1; min-width: 200px;">
                                         <p style="margin: 5px 0; color: #555;"><strong>🛁 Comodidades:</strong></p>
                                         <ul style="margin: 5px 0; padding-left: 20px; color: #555;">
@@ -1990,7 +2441,7 @@ Atenciosamente,
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <!-- Suíte Master -->
                             <div style="margin-bottom: 10px;">
                                 <div style="display: flex; align-items: center; margin-bottom: 10px;">
@@ -1999,14 +2450,14 @@ Atenciosamente,
                                     </div>
                                     <h4 style="margin: 0; color: #075e54;">Suíte Master (Cobertura)</h4>
                                 </div>
-                                
+
                                 <div style="display: flex; flex-wrap: wrap; gap: 15px;">
                                     <div style="flex: 1; min-width: 200px;">
                                         <p style="margin: 5px 0; color: #555;"><strong>👥 Capacidade:</strong> Até 3 pessoas</p>
                                         <p style="margin: 5px 0; color: #555;"><strong>📏 Área:</strong> 56 m²</p>
                                         <p style="margin: 5px 0; color: #555;"><strong>🛌 Camas:</strong> 1 cama King Size + sofá-cama</p>
                                     </div>
-                                    
+
                                     <div style="flex: 1; min-width: 200px;">
                                         <p style="margin: 5px 0; color: #555;"><strong>🌟 Destaques:</strong></p>
                                         <ul style="margin: 5px 0; padding-left: 20px; color: #555;">
@@ -2015,7 +2466,7 @@ Atenciosamente,
                                             <li>Mesa de trabalho</li>
                                         </ul>
                                     </div>
-                                    
+
                                     <div style="flex: 1; min-width: 200px;">
                                         <p style="margin: 5px 0; color: #555;"><strong>🛁 Comodidades:</strong></p>
                                         <ul style="margin: 5px 0; padding-left: 20px; color: #555;">
@@ -2031,7 +2482,7 @@ Atenciosamente,
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div style="background: #f0f8ff; padding: 12px 15px; border-top: 1px solid #e0e0e0;">
                             <div class="quick-actions">
                                 <button class="quick-action" data-action="solicitar-orcamento" style="background: #075e54; color: white;">
@@ -2045,151 +2496,34 @@ Atenciosamente,
                     </div>
                 `;
             }
-            
-            return `
-                <p>Entendi! Estou aqui para ajudá-lo com informações sobre o Hotel Granja Brasil.</p>
-                <p>Posso ajudá-lo com:</p>
-                <div class="quick-actions">
-                    <button class="quick-action" data-action="solicitar-orcamento">💰 Orçamento</button>
-                    <button class="quick-action" data-action="informacoes-hotel">🏨 Informações</button>
-                    <button class="quick-action" data-action="contato">📞 Contato</button>
-                </div>
-            `;
-        }
 
-        async function sendMessage() {
-            const input = document.getElementById('messageInput');
-            const message = input.value.trim();
-            
-            if (!message) return;
-            
-            addMessage(message, true);
-            input.value = '';
-            
+            // Para perguntas que não sejam sobre reservas/orçamentos, usar a IA
             showTyping();
-            
-            setTimeout(async () => {
-                const response = await processUserMessage(message);
+            try {
+                const aiResponse = await callHotelAI(message);
                 hideTyping();
-                addMessage(response);
-            }, 1000 + Math.random() * 1000);
-        }
-
-        function setupButtonListeners() {
-            const sendButton = document.getElementById('sendButton');
-            const messageInput = document.getElementById('messageInput');
-            
-            sendButton.removeEventListener('click', sendMessage);
-            sendButton.removeEventListener('touchend', sendMessageTouch);
-            
-            function sendMessageTouch(e) {
-                e.preventDefault();
-                sendMessage();
-            }
-            
-            if (sendButton) {
-                sendButton.addEventListener('click', sendMessage);
-                sendButton.addEventListener('touchend', sendMessageTouch);
-            }
-            
-            const checkAvailabilityBtn = document.getElementById('checkAvailabilityBtn');
-            if (checkAvailabilityBtn) {
-                checkAvailabilityBtn.removeEventListener('click', checkAvailability);
-                checkAvailabilityBtn.removeEventListener('touchend', checkAvailabilityTouch);
-                
-                function checkAvailabilityTouch(e) {
-                    e.preventDefault();
-                    checkAvailability();
-                }
-                
-                checkAvailabilityBtn.addEventListener('click', checkAvailability);
-                checkAvailabilityBtn.addEventListener('touchend', checkAvailabilityTouch);
-            }
-            
-            const whatsappBtn = document.getElementById('whatsappBtn');
-            if (whatsappBtn) {
-                whatsappBtn.removeEventListener('click', sendQuoteToWhatsApp);
-                whatsappBtn.removeEventListener('touchend', whatsappTouch);
-                
-                function whatsappTouch(e) {
-                    e.preventDefault();
-                    sendQuoteToWhatsApp();
-                }
-                
-                whatsappBtn.addEventListener('click', sendQuoteToWhatsApp);
-                whatsappBtn.addEventListener('touchend', whatsappTouch);
-            }
-            
-            const initialWhatsappBtn = document.getElementById('initialWhatsappBtn');
-            if (initialWhatsappBtn) {
-                initialWhatsappBtn.removeEventListener('click', initialWhatsappClick);
-                initialWhatsappBtn.removeEventListener('touchend', initialWhatsappTouch);
-                
-                function initialWhatsappTouch(e) {
-                    e.preventDefault();
-                    initialWhatsappClick();
-                }
-                
-                function initialWhatsappClick() {
-                    const message = "Olá, vim do assistente virtual e gostaria de ter informações a respeito de reservas.";
-                    openWhatsApp(message);
-                }
-                
-                initialWhatsappBtn.addEventListener('click', initialWhatsappClick);
-                initialWhatsappBtn.addEventListener('touchend', initialWhatsappTouch);
-            }
-            
-            const corporateBtn = document.getElementById('corporateBtn');
-            if (corporateBtn) {
-                corporateBtn.removeEventListener('click', sendCorporateEmail);
-                corporateBtn.removeEventListener('touchend', corporateTouch);
-                
-                function corporateTouch(e) {
-                    e.preventDefault();
-                    sendCorporateEmail();
-                }
-                
-                corporateBtn.addEventListener('click', sendCorporateEmail);
-                corporateBtn.addEventListener('touchend', corporateTouch);
-            }
-            
-            const quickActions = document.querySelectorAll('.quick-action');
-            quickActions.forEach(button => {
-                const newButton = button.cloneNode(true);
-                button.parentNode.replaceChild(newButton, button);
-                
-                newButton.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const action = this.getAttribute('data-action');
-                    handleQuickAction(action);
-                });
-                
-                newButton.addEventListener('touchend', function(e) {
-                    e.preventDefault();
-                    const action = this.getAttribute('data-action');
-                    handleQuickAction(action);
-                });
-            });
-            
-            if (messageInput) {
-                messageInput.removeEventListener('keypress', handleEnterKey);
-                
-                function handleEnterKey(e) {
-                    if (e.key === 'Enter') {
-                        sendMessage();
-                    }
-                }
-                
-                messageInput.addEventListener('keypress', handleEnterKey);
+                return aiResponse;
+            } catch (error) {
+                hideTyping();
+                return `
+                    <p>Entendi! Estou aqui para ajudá-lo com informações sobre o Hotel Granja Brasil.</p>
+                    <p>Posso ajudá-lo com:</p>
+                    <div class="quick-actions">
+                        <button class="quick-action" data-action="solicitar-orcamento">💰 Orçamento</button>
+                        <button class="quick-action" data-action="informacoes-hotel">🏨 Informações</button>
+                        <button class="quick-action" data-action="contato">📞 Contato</button>
+                    </div>
+                `;
             }
         }
 
+        // ========= FUNÇÃO ORIGINAL handleQuickAction =========
         async function handleQuickAction(action) {
             if (isProcessingQuickAction) return;
             isProcessingQuickAction = true;
-            
+
             let response = '';
-            
+
             try {
                 switch(action) {
                     case 'solicitar-orcamento':
@@ -2205,16 +2539,16 @@ Atenciosamente,
                                 <div style="background: #075e54; color: white; padding: 12px 15px;">
                                     <h3 style="margin: 0; font-size: 18px;">🏨 Hotel Granja Brasil</h3>
                                 </div>
-                                
+
                                 <div style="padding: 15px;">
                                     <p><em>Descubra Conforto, Lazer e Sofisticação no Coração de Itaipava</em></p>
-	
-				    <hr style="border: 0; height: 1px; background: #eee; margin: 15px 0;">
-                                    
+
+                                    <hr style="border: 0; height: 1px; background: #eee; margin: 15px 0;">
+
                                     <p><strong>📍 Localização:</strong> ${HOTEL_CONFIG.localizacao}</p>
 
-				    <hr style="border: 0; height: 1px; background: #eee; margin: 15px 0;">
-                                    
+                                    <hr style="border: 0; height: 1px; background: #eee; margin: 15px 0;">
+
                                     <!-- Apartamento Superior -->
                                     <div style="margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
                                         <div style="display: flex; align-items: center; margin-bottom: 10px;">
@@ -2223,14 +2557,14 @@ Atenciosamente,
                                             </div>
                                             <h4 style="margin: 0; color: #075e54;">Apartamento Superior</h4>
                                         </div>
-                                        
+
                                         <div style="display: flex; flex-wrap: wrap; gap: 15px;">
                                             <div style="flex: 1; min-width: 200px;">
                                                 <p style="margin: 5px 0; color: #555;"><strong>👥 Capacidade:</strong> Até 2 pessoas</p>
                                                 <p style="margin: 5px 0; color: #555;"><strong>📏 Área:</strong> 26 m²</p>
                                                 <p style="margin: 5px 0; color: #555;"><strong>🛌 Camas:</strong> 2 camas separadas (padrão viúva)</p>
                                             </div>
-                                            
+
                                             <div style="flex: 1; min-width: 200px;">
                                                 <p style="margin: 5px 0; color: #555;"><strong>🌟 Destaques:</strong></p>
                                                 <ul style="margin: 5px 0; padding-left: 20px; color: #555;">
@@ -2238,7 +2572,7 @@ Atenciosamente,
                                                     <li>Mesa de trabalho</li>
                                                 </ul>
                                             </div>
-                                            
+
                                             <div style="flex: 1; min-width: 200px;">
                                                 <p style="margin: 5px 0; color: #555;"><strong>🛁 Comodidades:</strong></p>
                                                 <ul style="margin: 5px 0; padding-left: 20px; color: #555;">
@@ -2249,7 +2583,7 @@ Atenciosamente,
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <!-- Suíte Sênior -->
                                     <div style="margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
                                         <div style="display: flex; align-items: center; margin-bottom: 10px;">
@@ -2258,14 +2592,14 @@ Atenciosamente,
                                             </div>
                                             <h4 style="margin: 0; color: #075e54;">Suíte Sênior</h4>
                                         </div>
-                                        
+
                                         <div style="display: flex; flex-wrap: wrap; gap: 15px;">
                                             <div style="flex: 1; min-width: 200px;">
                                                 <p style="margin: 5px 0; color: #555;"><strong>👥 Capacidade:</strong> Até 3 pessoas</p>
                                                 <p style="margin: 5px 0; color: #555;"><strong>📏 Área:</strong> 41 m²</p>
                                                 <p style="margin: 5px 0; color: #555;"><strong>🛌 Camas:</strong> 1 cama King Size + sofá-cama</p>
                                             </div>
-                                            
+
                                             <div style="flex: 1; min-width: 200px;">
                                                 <p style="margin: 5px 0; color: #555;"><strong>🌟 Destaques:</strong></p>
                                                 <ul style="margin: 5px 0; padding-left: 20px; color: #555;">
@@ -2274,7 +2608,7 @@ Atenciosamente,
                                                     <li>Mesa de trabalho</li>
                                                 </ul>
                                             </div>
-                                            
+
                                             <div style="flex: 1; min-width: 200px;">
                                                 <p style="margin: 5px 0; color: #555;"><strong>🛁 Comodidades:</strong></p>
                                                 <ul style="margin: 5px 0; padding-left: 20px; color: #555;">
@@ -2288,7 +2622,7 @@ Atenciosamente,
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <!-- Suíte Master -->
                                     <div style="margin-bottom: 10px;">
                                         <div style="display: flex; align-items: center; margin-bottom: 10px;">
@@ -2297,14 +2631,14 @@ Atenciosamente,
                                             </div>
                                             <h4 style="margin: 0; color: #075e54;">Suíte Master (Cobertura)</h4>
                                         </div>
-                                        
+
                                         <div style="display: flex; flex-wrap: wrap; gap: 15px;">
                                             <div style="flex: 1; min-width: 200px;">
                                                 <p style="margin: 5px 0; color: #555;"><strong>👥 Capacidade:</strong> Até 3 pessoas</p>
                                                 <p style="margin: 5px 0; color: #555;"><strong>📏 Área:</strong> 56 m²</p>
                                                 <p style="margin: 5px 0; color: #555;"><strong>🛌 Camas:</strong> 1 cama King Size + sofá-cama</p>
                                             </div>
-                                            
+
                                             <div style="flex: 1; min-width: 200px;">
                                                 <p style="margin: 5px 0; color: #555;"><strong>🌟 Destaques:</strong></p>
                                                 <ul style="margin: 5px 0; padding-left: 20px; color: #555;">
@@ -2313,7 +2647,7 @@ Atenciosamente,
                                                     <li>Mesa de trabalho</li>
                                                 </ul>
                                             </div>
-                                            
+
                                             <div style="flex: 1; min-width: 200px;">
                                                 <p style="margin: 5px 0; color: #555;"><strong>🛁 Comodidades:</strong></p>
                                                 <ul style="margin: 5px 0; padding-left: 20px; color: #555;">
@@ -2329,7 +2663,7 @@ Atenciosamente,
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div style="background: #f0f8ff; padding: 12px 15px; border-top: 1px solid #e0e0e0;">
                                     <div class="quick-actions">
                                         <button class="quick-action" data-action="servicos">🌟 Serviços</button>
@@ -2347,9 +2681,9 @@ Atenciosamente,
                             <ul style="margin: 10px 0; padding-left: 20px;">
                                 ${HOTEL_CONFIG.servicos.map(servico => `<li>✅ ${servico}</li>`).join('')}
                             </ul>
-                            
+
                             <p><strong>⏰ Horário da Piscina:</strong> ${HOTEL_CONFIG.horarios.piscina}</p>
-                            
+
                             <div class="quick-actions">
                                 <button class="quick-action" data-action="informacoes-hotel">🏨 Sobre o Hotel</button>
                                 <button class="quick-action" data-action="solicitar-orcamento">💰 Fazer Orçamento</button>
@@ -2369,7 +2703,7 @@ Atenciosamente,
                                 <li>🐕 <strong>Animais:</strong> ${HOTEL_CONFIG.politicas.animais}</li>
                                 <li>📋 <strong>Atestado Médico:</strong> ${HOTEL_CONFIG.politicas.atestatMedico}</li>
                             </ul>
-                            
+
                             <div class="quick-actions">
                                 <button class="quick-action" data-action="solicitar-orcamento">💰 Fazer Orçamento</button>
                             </div>
@@ -2381,7 +2715,7 @@ Atenciosamente,
                             <p><strong>${HOTEL_CONFIG.localizacao}</strong></p>
                             <p>🍴 <strong>Proximidade aos melhores restaurantes da região</strong></p>
                             <p>🚗 <strong>Estacionamento Gratuito:</strong> Coberto (mediante disponibilidade) ou descoberto.</p>
-                            
+
                             <div class="quick-actions">
                                 <button class="quick-action" data-action="solicitar-orcamento">💰 Solicitar Orçamento</button>
                             </div>
@@ -2392,20 +2726,20 @@ Atenciosamente,
                             <p><strong>📞 Entre em Contato</strong></p>
                             <p>WhatsApp: <strong>${HOTEL_CONFIG.whatsappNumber}</strong></p>
                             <p>E-mail Corporativo: <strong>${HOTEL_CONFIG.emailCorporativo}</strong></p>
-                            
+
                             <p><strong>⏰ Horários de Atendimento:</strong></p>
                             <ul style="margin: 10px 0; padding-left: 20px;">
                                 <li><strong>Recepção:</strong> ${HOTEL_CONFIG.horarios.recepcao}</li>
                                 <li><strong>Governança:</strong> ${HOTEL_CONFIG.horarios.governanca}</li>
                             </ul>
-                            
+
                             <button id="initialWhatsappBtn" class="whatsapp-button">
                                 💬 Chamar no WhatsApp
                             </button>
                         `;
                         break;
                 }
-                
+
                 if (response) {
                     showTyping();
                     setTimeout(() => {
@@ -2422,22 +2756,91 @@ Atenciosamente,
             }
         }
 
+        function setupButtonListeners() {
+            const sendButton = document.getElementById('sendButton');
+            const messageInput = document.getElementById('messageInput');
+
+            // Remover listeners antigos
+            sendButton.removeEventListener('click', sendMessage);
+            
+            // Adicionar novos listeners
+            if (sendButton) {
+                sendButton.addEventListener('click', sendMessage);
+            }
+
+            const checkAvailabilityBtn = document.getElementById('checkAvailabilityBtn');
+            if (checkAvailabilityBtn) {
+                checkAvailabilityBtn.removeEventListener('click', checkAvailability);
+                checkAvailabilityBtn.addEventListener('click', checkAvailability);
+            }
+
+            const whatsappBtn = document.getElementById('whatsappBtn');
+            if (whatsappBtn) {
+                whatsappBtn.removeEventListener('click', sendQuoteToWhatsApp);
+                whatsappBtn.addEventListener('click', sendQuoteToWhatsApp);
+            }
+
+            const initialWhatsappBtn = document.getElementById('initialWhatsappBtn');
+            if (initialWhatsappBtn) {
+                initialWhatsappBtn.removeEventListener('click', initialWhatsappClick);
+                
+                function initialWhatsappClick() {
+                    const message = "Olá, vim do assistente virtual e gostaria de ter informações a respeito de reservas.";
+                    openWhatsApp(message);
+                }
+
+                initialWhatsappBtn.addEventListener('click', initialWhatsappClick);
+            }
+
+            const corporateBtn = document.getElementById('corporateBtn');
+            if (corporateBtn) {
+                corporateBtn.removeEventListener('click', sendCorporateEmail);
+                corporateBtn.addEventListener('click', sendCorporateEmail);
+            }
+
+            // Configurar ações rápidas
+            const quickActions = document.querySelectorAll('.quick-action');
+            quickActions.forEach(button => {
+                const newButton = button.cloneNode(true);
+                button.parentNode.replaceChild(newButton, button);
+
+                newButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const action = this.getAttribute('data-action');
+                    handleQuickAction(action);
+                });
+            });
+
+            // Configurar tecla Enter
+            if (messageInput) {
+                messageInput.removeEventListener('keypress', handleEnterKey);
+                
+                function handleEnterKey(e) {
+                    if (e.key === 'Enter') {
+                        sendMessage();
+                    }
+                }
+                
+                messageInput.addEventListener('keypress', handleEnterKey);
+            }
+        }
+
         // Iniciar atualização periódica de disponibilidade
         function startAvailabilityRefresh() {
             setInterval(() => {
                 if (currentAvailabilityData && selectedRooms.length > 0) {
                     const startDate = document.getElementById('checkinDate').value;
                     const endDate = document.getElementById('checkoutDate').value;
-                    
+
                     if (startDate && endDate) {
                         const formattedStartDate = formatDateToDDMMAAAA(startDate);
                         const formattedEndDate = formatDateToDDMMAAAA(endDate);
-                        
+
                         fetchAvailability(formattedStartDate, formattedEndDate)
                             .then(newData => {
                                 currentAvailabilityData = newData;
                                 updateRoomOptions();
-                                
+
                                 // Registrar no histórico
                                 availabilityHistory.push({
                                     timestamp: new Date(),
@@ -2453,10 +2856,15 @@ Atenciosamente,
             }, 300000); // Atualiza a cada 5 minutos
         }
 
+        // Inicializar o chat
         document.addEventListener('DOMContentLoaded', function() {
             setupButtonListeners();
             document.getElementById('messageInput').focus();
             startAvailabilityRefresh();
+            
+            // Testar conexão com a IA
+            console.log('Hotel Granja Brasil Assistente inicializado');
+            console.log('Endpoint IA: https://intrega-ia.paulo-migueoli.workers.dev/');
         });
     </script>
 </body>
