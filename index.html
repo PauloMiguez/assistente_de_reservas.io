@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hotel Granja Brasil | Luxo e Tradição em Itaipava</title>
-    <meta name="description" content="O seu Hotel em Itaipava com estrutura exclusiva e serviços de alto padrão. Suítes luxuosas, quadras de tênis e muito mais.">
+    <meta name="description" content="Hotel 5 estrelas em Itaipava com estrutura exclusiva, gastronomia premiada e serviços de alto padrão. Suítes luxuosas, spa, quadras de tênis e muito mais.">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -963,140 +963,134 @@
             }
         }
 
-        /* Modal do Assistente - Versão Simplificada */
-        .assistant-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 2500;
-        }
+        /* =================================================================== */
+        /* ESTILOS PARA O MODAL DO ASSISTENTE (VERSÃO FINAL COM CENTRALIZAÇÃO FORÇADA E MOBILE FULLSCREEN) */
+        /* =================================================================== */
 
-        .assistant-modal.active {
-            display: block;
-        }
-
+        /* O fundo escuro que cobre a página */
         .assistant-modal-overlay {
-            position: fixed;
+            position: fixed !important;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(3px);
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
         }
 
-        .assistant-modal-container {
-            position: fixed;
-            bottom: 120px;
-            right: 30px;
-            width: 380px;
-            height: 600px;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-            z-index: 2501;
-            animation: slideInRight 0.3s ease;
-            overflow: hidden;
+        /* Classe para mostrar o modal */
+        .assistant-modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* O conteúdo do modal (a caixa branca) - ESTILO DESKTOP */
+        .assistant-modal-content {
+            /* --- ESTRATÉGIA DE CENTRALIZAÇÃO FORÇADA --- */
+            position: fixed !important; /* Força o posicionamento em relação à janela */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9); /* Centraliza e aplica o efeito de zoom inicial */
+            /* ------------------------------------------- */
+            
+            background-color: #fff;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 620px;
+            height: 80vh;
+            max-height: 700px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             display: flex;
             flex-direction: column;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            z-index: 2001;
         }
 
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(30px);
+        /* Efeito de zoom ao mostrar o modal */
+        .assistant-modal-overlay.show .assistant-modal-content {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        /* --- MEDIA QUERY PARA MOBILE (TELA CHEIA) --- */
+        /* Estilos aplicados em telas com largura de até 767px */
+        @media (max-width: 767px) {
+            .assistant-modal-content {
+                width: 100%;
+                height: 100%;
+                max-width: 100%;
+                max-height: 100%;
+                border-radius: 0; /* Remove as bordas arredondadas para preencher a tela */
+                top: 0; /* Alinha no topo */
+                left: 0; /* Alinha na esquerda */
+                transform: none; /* Remove a transformação de centralização */
             }
-            to {
-                opacity: 1;
-                transform: translateX(0);
+
+            /* Remove o efeito de zoom no mobile para uma transição mais suave */
+            .assistant-modal-overlay.show .assistant-modal-content {
+                transform: none;
             }
         }
 
-        /* Cabeçalho Simplificado - Apenas título e botão fechar */
+        /* Cabeçalho do modal */
         .assistant-modal-header {
-            background: var(--verde-floresta);
-            color: white;
-            padding: 15px 20px;
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            border-bottom: 3px solid var(--dourado);
+            align-items: center;
+            padding: 12px 20px;
+            border-bottom: 1px solid #e5e5e5;
+            background-color: #f7f7f7;
+            flex-shrink: 0; /* Impede que o cabeçalho encolha */
         }
 
-        .assistant-modal-header h2 {
-            font-size: 18px;
+        .assistant-modal-header h4 {
             margin: 0;
+            font-size: 16px;
             font-weight: 600;
-            font-family: 'Lato', sans-serif;
-            color: white;
+            color: #333;
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
-        .assistant-modal-header h2 i {
+        .assistant-modal-header h4 i {
             color: var(--dourado);
-            font-size: 20px;
         }
 
-        .assistant-modal-close {
-            background: rgba(255,255,255,0.2);
+        /* Botão de fechar (o "X") */
+        .assistant-modal-close-btn {
+            background: none;
             border: none;
-            color: white;
+            font-size: 28px;
+            line-height: 1;
+            color: #888;
+            cursor: pointer;
+            padding: 0;
             width: 32px;
             height: 32px;
-            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
-            transition: background 0.3s ease;
-            font-size: 16px;
         }
 
-        .assistant-modal-close:hover {
-            background: rgba(255,255,255,0.3);
+        .assistant-modal-close-btn:hover {
+            color: #000;
         }
 
-        /* Corpo do Modal - Iframe */
+        /* Corpo do modal, onde o iframe fica */
         .assistant-modal-body {
-            flex: 1;
+            flex-grow: 1;
+            -webkit-overflow-scrolling: touch;
             background: #f5f5f5;
-            overflow: hidden;
         }
 
         .assistant-modal-body iframe {
             width: 100%;
             height: 100%;
             border: none;
-        }
-
-        /* Responsividade */
-        @media (max-width: 768px) {
-            .assistant-modal-container {
-                width: 90%;
-                height: 80vh;
-                bottom: 100px;
-                right: 5%;
-                left: 5%;
-            }
-            
-            .assistant-float {
-                bottom: 20px;
-                right: 20px;
-            }
-            
-            .assistant-button {
-                width: 60px;
-                height: 60px;
-            }
-            
-            .assistant-button i {
-                font-size: 28px;
-            }
         }
 
         /* Footer */
@@ -1414,13 +1408,12 @@
         </div>
     </div>
 
-    <!-- Modal do Assistente - Versão Simplificada -->
-    <div class="assistant-modal" id="assistantModal">
-        <div class="assistant-modal-overlay" id="assistantModalOverlay"></div>
-        <div class="assistant-modal-container">
+    <!-- Modal do Assistente - Versão com estilização fornecida -->
+    <div class="assistant-modal-overlay" id="assistantModalOverlay">
+        <div class="assistant-modal-content">
             <div class="assistant-modal-header">
-                <h2><i class="fas fa-robot"></i> Assistente de Reservas</h2>
-                <button class="assistant-modal-close" id="closeAssistantModal">
+                <h4><i class="fas fa-robot"></i> Assistente de Reservas - Hotel Granja Brasil</h4>
+                <button class="assistant-modal-close-btn" id="closeAssistantModalBtn">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
@@ -1741,7 +1734,7 @@
                 <div class="footer-grid">
                     <div class="footer-about">
                         <h3 class="footer-title">Hotel Granja Brasil</h3>
-                        <p>Excelência em hospitalidade há mais de 15 anos. Proporcionamos experiências únicas em um ambiente de luxo e sofisticação.</p>
+                        <p>Excelência em hospitalidade há mais de 30 anos. Proporcionamos experiências únicas em um ambiente de luxo e sofisticação.</p>
                     </div>
 
                     <div>
@@ -1934,25 +1927,28 @@
         closeModal.addEventListener('click', closePolicyModal);
         modalOverlay.addEventListener('click', closePolicyModal);
 
-        // Modal do Assistente functionality
-        const assistantModal = document.getElementById('assistantModal');
-        const assistantButton = document.getElementById('assistantButton');
-        const closeAssistantModal = document.getElementById('closeAssistantModal');
+        // Modal do Assistente functionality (versão com nova estilização)
         const assistantModalOverlay = document.getElementById('assistantModalOverlay');
+        const assistantButton = document.getElementById('assistantButton');
+        const closeAssistantModalBtn = document.getElementById('closeAssistantModalBtn');
 
         function openAssistantModal() {
-            assistantModal.classList.add('active');
+            assistantModalOverlay.classList.add('show');
             document.body.classList.add('modal-open');
         }
 
-        function closeAssistantModalFunc() {
-            assistantModal.classList.remove('active');
+        function closeAssistantModal() {
+            assistantModalOverlay.classList.remove('show');
             document.body.classList.remove('modal-open');
         }
 
         assistantButton.addEventListener('click', openAssistantModal);
-        closeAssistantModal.addEventListener('click', closeAssistantModalFunc);
-        assistantModalOverlay.addEventListener('click', closeAssistantModalFunc);
+        closeAssistantModalBtn.addEventListener('click', closeAssistantModal);
+        assistantModalOverlay.addEventListener('click', function(e) {
+            if (e.target === assistantModalOverlay) {
+                closeAssistantModal();
+            }
+        });
 
         // Close modals with Escape key
         document.addEventListener('keydown', (e) => {
@@ -1960,8 +1956,8 @@
                 if (policyModal.classList.contains('active')) {
                     closePolicyModal();
                 }
-                if (assistantModal.classList.contains('active')) {
-                    closeAssistantModalFunc();
+                if (assistantModalOverlay.classList.contains('show')) {
+                    closeAssistantModal();
                 }
             }
         });
@@ -2010,5 +2006,3 @@
     </script>
 </body>
 </html>
-
-
