@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>Hotel Granja Brasil | Luxo e Tradição em Itaipava</title>
     <meta name="description" content="Hotel 5 estrelas em Itaipava com estrutura exclusiva, gastronomia premiada e serviços de alto padrão. Suítes luxuosas, spa, quadras de tênis e muito mais.">
     
@@ -48,6 +48,8 @@
             background-color: var(--bege);
             line-height: 1.6;
             overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
         }
 
         body.modal-open {
@@ -64,6 +66,7 @@
             max-width: 1280px;
             margin: 0 auto;
             padding: 0 24px;
+            width: 100%;
         }
 
         /* Loader */
@@ -917,12 +920,16 @@
             top: -2px;
         }
 
-        /* Botão Flutuante do Assistente */
+        /* =================================================================== */
+        /* BOTÃO FLUTUANTE DO ASSISTENTE - VERSÃO CORRIGIDA */
+        /* =================================================================== */
         .assistant-float {
             position: fixed;
             bottom: 30px;
             right: 30px;
             z-index: 999;
+            /* Garantir que o botão permaneça visível em todas as resoluções */
+            pointer-events: auto;
         }
 
         .assistant-button {
@@ -960,6 +967,43 @@
             }
             100% {
                 box-shadow: 0 0 0 0 rgba(196, 162, 122, 0);
+            }
+        }
+
+        /* Media query específica para mobile - ajustar o botão imediatamente */
+        @media (max-width: 768px) {
+            .assistant-float {
+                bottom: 20px;
+                right: 20px;
+                /* Garantir que o botão fique acima de qualquer conteúdo */
+                z-index: 1000;
+            }
+            
+            .assistant-button {
+                width: 60px;
+                height: 60px;
+                box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            }
+            
+            .assistant-button i {
+                font-size: 28px;
+            }
+        }
+
+        /* Para telas muito pequenas (ex: iPhone SE) */
+        @media (max-width: 375px) {
+            .assistant-float {
+                bottom: 15px;
+                right: 15px;
+            }
+            
+            .assistant-button {
+                width: 55px;
+                height: 55px;
+            }
+            
+            .assistant-button i {
+                font-size: 24px;
             }
         }
 
@@ -1230,7 +1274,7 @@
             font-size: 14px;
         }
 
-        /* Responsive */
+        /* Responsive - Ajustes gerais */
         @media (max-width: 1024px) {
             .nav-menu {
                 display: none;
@@ -1996,6 +2040,17 @@
             images[index].classList.add('active');
             dots[index].classList.add('active');
         };
+
+        // Forçar reflow para garantir que a responsividade seja aplicada imediatamente
+        window.addEventListener('load', function() {
+            // Pequeno atraso para garantir que tudo seja renderizado corretamente
+            setTimeout(function() {
+                // Forçar um reflow sutil para ajustar o layout
+                document.body.style.display = 'none';
+                document.body.offsetHeight; // Forçar reflow
+                document.body.style.display = '';
+            }, 10);
+        });
 
         // Responsive handling
         window.addEventListener('resize', () => {
