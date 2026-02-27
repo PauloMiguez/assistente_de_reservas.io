@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>Hotel Granja Brasil | Luxo e Tradição em Itaipava</title>
-    <meta name="description" content="Hotel 5 estrelas em Itaipava com estrutura exclusiva, gastronomia premiada e serviços de alto padrão. Suítes luxuosas, spa, quadras de tênis e muito mais.">
+    <meta name="description" content="Hotel em Itaipava com estrutura exclusiva e serviços de alto padrão. Suítes luxuosas, quadras de tênis e muito mais.">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -414,7 +414,7 @@
             }
         }
 
-        /* Sections - Adicionado padding-top para compensar o header fixo */
+        /* Sections */
         .section {
             padding: 100px 0;
             scroll-margin-top: var(--header-height);
@@ -940,6 +940,14 @@
             transform: translateX(0) translateZ(0) !important;
             backface-visibility: hidden;
             pointer-events: auto;
+            transition: opacity 0.3s ease, visibility 0.3s ease !important;
+        }
+
+        /* Classe para ocultar o botão quando o modal estiver aberto */
+        .assistant-float.hidden {
+            opacity: 0 !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
         }
 
         .assistant-button {
@@ -1548,7 +1556,7 @@
     </div>
 
     <!-- Botão Flutuante do Assistente -->
-    <div class="assistant-float">
+    <div class="assistant-float" id="assistantFloat">
         <div class="assistant-button" id="assistantButton">
             <i class="fas fa-robot"></i>
         </div>
@@ -2040,7 +2048,7 @@
         // Start slider
         startSlider();
 
-        // CORREÇÃO: Smooth scroll com offset para o header fixo
+        // Smooth scroll com offset para o header fixo
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -2086,20 +2094,29 @@
         closeModal.addEventListener('click', closePolicyModal);
         modalOverlay.addEventListener('click', closePolicyModal);
 
-        // Modal do Assistente functionality
+        // Modal do Assistente functionality - CORRIGIDO: Oculta o botão flutuante
         const assistantModal = document.getElementById('assistantModal');
         const assistantButton = document.getElementById('assistantButton');
         const closeAssistantModal = document.getElementById('closeAssistantModal');
         const assistantModalOverlay = document.getElementById('assistantModalOverlay');
+        const assistantFloat = document.getElementById('assistantFloat');
 
         function openAssistantModal() {
             assistantModal.classList.add('active');
             document.body.classList.add('modal-open');
+            // Oculta o botão flutuante
+            if (assistantFloat) {
+                assistantFloat.classList.add('hidden');
+            }
         }
 
         function closeAssistantModalFunc() {
             assistantModal.classList.remove('active');
             document.body.classList.remove('modal-open');
+            // Mostra o botão flutuante novamente
+            if (assistantFloat) {
+                assistantFloat.classList.remove('hidden');
+            }
         }
 
         assistantButton.addEventListener('click', openAssistantModal);
@@ -2160,12 +2177,11 @@
             }
         });
 
-        // CORREÇÃO ADICIONAL: Garantir que o botão flutuante esteja sempre visível
+        // CORREÇÃO ADICIONAL: Garantir que o botão flutuante esteja sempre visível quando não estiver no modal
         (function fixAssistantButton() {
             // Forçar reflow para corrigir posicionamento
             setTimeout(() => {
-                const assistantFloat = document.querySelector('.assistant-float');
-                if (assistantFloat) {
+                if (assistantFloat && !assistantModal.classList.contains('active')) {
                     assistantFloat.style.display = 'block';
                     assistantFloat.style.visibility = 'visible';
                     assistantFloat.style.opacity = '1';
@@ -2174,16 +2190,14 @@
 
             // Corrigir quando a página é rolada
             window.addEventListener('scroll', function() {
-                const assistantFloat = document.querySelector('.assistant-float');
-                if (assistantFloat) {
+                if (assistantFloat && !assistantModal.classList.contains('active')) {
                     assistantFloat.style.transform = 'translateX(0)';
                 }
             });
 
             // Corrigir quando a tela é redimensionada
             window.addEventListener('resize', function() {
-                const assistantFloat = document.querySelector('.assistant-float');
-                if (assistantFloat) {
+                if (assistantFloat && !assistantModal.classList.contains('active')) {
                     assistantFloat.style.transform = 'translateX(0)';
                 }
             });
