@@ -1099,6 +1099,112 @@
             border: none;
         }
 
+        /* Modal de Vídeo Personalizado */
+        #videoFullscreenModal .modal-container {
+            background: black;
+            border: 3px solid var(--dourado);
+        }
+
+        #videoFullscreenModal .modal-header {
+            background: var(--verde-floresta) !important;
+        }
+
+        #videoFullscreenModal .modal-body {
+            padding: 0;
+            background: black;
+            max-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+        }
+
+        #fullscreenVideo {
+            width: 100%;
+            max-height: 70vh;
+            object-fit: contain;
+        }
+
+        /* Botão de vídeo nos cards */
+        .video-button {
+            background: var(--dourado);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            padding: 8px 20px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .video-button:hover {
+            background: var(--dourado-escuro);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(196, 162, 122, 0.3);
+        }
+
+        .video-button i {
+            font-size: 12px;
+        }
+
+        /* Melhorias para vídeos em tela cheia */
+        video:-webkit-full-screen {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: black;
+        }
+
+        video:-moz-full-screen {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: black;
+        }
+
+        video:-ms-fullscreen {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: black;
+        }
+
+        video:fullscreen {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: black;
+        }
+
+        /* Botão de tela cheia para vídeos */
+        .video-fullscreen-btn {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: 2px solid white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+        .video-fullscreen-btn:hover {
+            background: rgba(0,0,0,0.8);
+            transform: scale(1.1);
+        }
+
         /* Footer */
         .footer {
             background: var(--verde-floresta);
@@ -1433,6 +1539,11 @@
                 right: 15px;
                 font-size: 16px;
                 padding: 10px 24px;
+            }
+            
+            .video-button {
+                width: 100%;
+                justify-content: center;
             }
         }
 
@@ -2166,6 +2277,211 @@
             images[index].classList.add('active');
             dots[index].classList.add('active');
         };
+
+        // Função para reproduzir vídeo em tela cheia diretamente nos cards
+        function playVideoFullscreen(videoSrc, videoTitle) {
+            // Criar modal para vídeo se não existir
+            let videoModal = document.getElementById('videoFullscreenModal');
+            
+            if (!videoModal) {
+                videoModal = document.createElement('div');
+                videoModal.id = 'videoFullscreenModal';
+                videoModal.className = 'modal';
+                videoModal.innerHTML = `
+                    <div class="modal-overlay"></div>
+                    <div class="modal-container" style="max-width: 900px; background: black;">
+                        <div class="modal-header" style="background: #1A3B0E;">
+                            <h2 style="color: white; margin: 0;">${videoTitle}</h2>
+                            <button class="modal-close" onclick="closeVideoFullscreen()">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <div class="modal-body" style="padding: 0; background: black; max-height: 80vh;">
+                            <video id="fullscreenVideo" controls playsinline style="width: 100%; height: auto; max-height: 70vh; background: black;">
+                                <source src="${videoSrc}" type="video/mp4">
+                                Seu navegador não suporta vídeos.
+                            </video>
+                        </div>
+                    </div>
+                `;
+                document.body.appendChild(videoModal);
+            } else {
+                // Atualizar título e fonte
+                videoModal.querySelector('h2').textContent = videoTitle;
+                const video = videoModal.querySelector('#fullscreenVideo');
+                const source = video.querySelector('source');
+                source.src = videoSrc;
+                video.load();
+            }
+            
+            // Abrir modal e reproduzir
+            videoModal.classList.add('active');
+            document.body.classList.add('modal-open');
+            
+            const video = document.getElementById('fullscreenVideo');
+            
+            // Configurar evento para quando o vídeo estiver pronto
+            video.onloadeddata = function() {
+                video.play()
+                    .then(() => {
+                        console.log('Vídeo reproduzindo');
+                        
+                        // Tentar entrar em tela cheia automaticamente
+                        try {
+                            if (video.requestFullscreen) {
+                                video.requestFullscreen();
+                            } else if (video.webkitRequestFullscreen) {
+                                video.webkitRequestFullscreen();
+                            } else if (video.msRequestFullscreen) {
+                                video.msRequestFullscreen();
+                            } else if (video.mozRequestFullScreen) {
+                                video.mozRequestFullScreen();
+                            }
+                        } catch (fullscreenError) {
+                            console.log('Erro ao entrar em tela cheia:', fullscreenError);
+                            
+                            // Fallback para navegadores sem suporte a fullscreen
+                            const fallbackMsg = document.createElement('div');
+                            fallbackMsg.style.position = 'absolute';
+                            fallbackMsg.style.bottom = '10px';
+                            fallbackMsg.style.left = '50%';
+                            fallbackMsg.style.transform = 'translateX(-50%)';
+                            fallbackMsg.style.background = 'rgba(0,0,0,0.7)';
+                            fallbackMsg.style.color = 'white';
+                            fallbackMsg.style.padding = '8px 16px';
+                            fallbackMsg.style.borderRadius = '20px';
+                            fallbackMsg.style.fontSize = '14px';
+                            fallbackMsg.style.zIndex = '1002';
+                            fallbackMsg.innerHTML = '▶️ Clique no ícone de tela cheia para expandir';
+                            
+                            document.querySelector('.modal-content').appendChild(fallbackMsg);
+                            
+                            setTimeout(() => {
+                                if (fallbackMsg.parentNode) {
+                                    fallbackMsg.parentNode.removeChild(fallbackMsg);
+                                }
+                            }, 3000);
+                        }
+                    })
+                    .catch(error => {
+                        console.log('Reprodução automática bloqueada:', error);
+                        
+                        // Mensagem amigável para reprodução manual
+                        const playMsg = document.createElement('div');
+                        playMsg.style.position = 'absolute';
+                        playMsg.style.bottom = '10px';
+                        playMsg.style.left = '50%';
+                        playMsg.style.transform = 'translateX(-50%)';
+                        playMsg.style.background = 'rgba(0,0,0,0.7)';
+                        playMsg.style.color = 'white';
+                        playMsg.style.padding = '8px 16px';
+                        playMsg.style.borderRadius = '20px';
+                        playMsg.style.fontSize = '14px';
+                        playMsg.style.zIndex = '1002';
+                        playMsg.style.cursor = 'pointer';
+                        playMsg.innerHTML = '▶️ Clique aqui para reproduzir em tela cheia';
+                        
+                        playMsg.addEventListener('click', function() {
+                            video.play();
+                            if (video.requestFullscreen) {
+                                video.requestFullscreen();
+                            }
+                            this.remove();
+                        });
+                        
+                        document.querySelector('.modal-content').appendChild(playMsg);
+                    });
+            };
+            
+            // Garantir que ao sair da tela cheia, o modal ainda funcione
+            video.addEventListener('fullscreenchange', function() {
+                if (!document.fullscreenElement && !document.webkitFullscreenElement && 
+                    !document.msFullscreenElement && !document.mozFullScreenElement) {
+                    console.log('Saiu do modo tela cheia');
+                }
+            });
+            
+            video.addEventListener('webkitfullscreenchange', function() {
+                if (!document.webkitFullscreenElement) {
+                    console.log('Saiu do modo tela cheia (Safari)');
+                }
+            });
+        }
+
+        function closeVideoFullscreen() {
+            const modal = document.getElementById('videoFullscreenModal');
+            if (modal) {
+                // Sair da tela cheia se estiver
+                if (document.fullscreenElement || document.webkitFullscreenElement || 
+                    document.msFullscreenElement || document.mozFullScreenElement) {
+                    
+                    if (document.exitFullscreen) {
+                        document.exitFullscreen();
+                    } else if (document.webkitExitFullscreen) {
+                        document.webkitExitFullscreen();
+                    } else if (document.msExitFullscreen) {
+                        document.msExitFullscreen();
+                    } else if (document.mozCancelFullScreen) {
+                        document.mozCancelFullScreen();
+                    }
+                }
+                
+                // Pausar vídeo
+                const video = modal.querySelector('#fullscreenVideo');
+                if (video) {
+                    video.pause();
+                    video.currentTime = 0;
+                }
+                
+                modal.classList.remove('active');
+                document.body.classList.remove('modal-open');
+            }
+        }
+
+        // Adicionar botões de vídeo nos cards da Landing Page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Adicionar botões de vídeo nos cards das acomodações
+            const accommodationCards = document.querySelectorAll('.accommodation-card');
+            
+            accommodationCards.forEach((card, index) => {
+                const cardTitle = card.querySelector('h3').textContent;
+                let videoFileName = '';
+                
+                if (cardTitle.includes('Superior')) {
+                    videoFileName = 'Apartamento Superior.mp4';
+                } else if (cardTitle.includes('Sênior')) {
+                    videoFileName = 'Suíte Sênior.mp4';
+                } else if (cardTitle.includes('Máster')) {
+                    videoFileName = 'Suíte Máster.mp4';
+                }
+                
+                // Criar botão de vídeo
+                const videoBtn = document.createElement('button');
+                videoBtn.className = 'video-button';
+                videoBtn.innerHTML = '<i class="fas fa-play"></i> Ver Vídeo';
+                
+                videoBtn.onclick = () => {
+                    playVideoFullscreen(videoFileName, cardTitle);
+                };
+                
+                // Adicionar ao card
+                card.querySelector('.card-content').appendChild(videoBtn);
+            });
+        });
+
+        // Fechar modal com ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeVideoFullscreen();
+            }
+        });
+
+        // Fechar modal ao clicar no overlay
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('modal-overlay')) {
+                closeVideoFullscreen();
+            }
+        });
 
         // Responsive handling
         window.addEventListener('resize', () => {
