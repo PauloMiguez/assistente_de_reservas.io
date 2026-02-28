@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>Hotel Granja Brasil | Luxo e Tradição em Itaipava</title>
-    <meta name="description" content="Hotel em Itaipava com estrutura exclusiva e serviços de alto padrão. Suítes luxuosas, quadras de tênis e muito mais.">
+    <meta name="description" content="Hotel 5 estrelas em Itaipava com estrutura exclusiva, gastronomia premiada e serviços de alto padrão. Suítes luxuosas, spa, quadras de tênis e muito mais.">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -928,7 +928,7 @@
             top: -2px;
         }
 
-        /* Botão Flutuante do Assistente - CORRIGIDO */
+        /* Botão Flutuante do Assistente */
         .assistant-float {
             position: fixed !important;
             bottom: 30px;
@@ -943,7 +943,6 @@
             transition: opacity 0.3s ease, visibility 0.3s ease !important;
         }
 
-        /* Classe para ocultar o botão quando o modal estiver aberto */
         .assistant-float.hidden {
             opacity: 0 !important;
             visibility: hidden !important;
@@ -988,7 +987,7 @@
             }
         }
 
-        /* Modal do Assistente - Versão Simplificada */
+        /* Modal do Assistente - Versão Centralizada */
         .assistant-modal {
             display: none;
             position: fixed;
@@ -997,10 +996,12 @@
             width: 100%;
             height: 100%;
             z-index: 2500;
+            align-items: center;
+            justify-content: center;
         }
 
         .assistant-modal.active {
-            display: block;
+            display: flex;
         }
 
         .assistant-modal-overlay {
@@ -1014,33 +1015,33 @@
         }
 
         .assistant-modal-container {
-            position: fixed;
-            bottom: 120px;
-            right: 30px;
-            width: 380px;
-            height: 600px;
+            position: relative;
+            width: 700px;
+            max-width: 95%;
+            height: 500px;
+            max-height: 90vh;
             background: white;
             border-radius: 20px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.3);
             z-index: 2501;
-            animation: slideInRight 0.3s ease;
+            animation: modalFadeIn 0.3s ease;
             overflow: hidden;
             display: flex;
             flex-direction: column;
+            margin: 0 auto;
         }
 
-        @keyframes slideInRight {
+        @keyframes modalFadeIn {
             from {
                 opacity: 0;
-                transform: translateX(30px);
+                transform: scale(0.9);
             }
             to {
                 opacity: 1;
-                transform: translateX(0);
+                transform: scale(1);
             }
         }
 
-        /* Cabeçalho Simplificado */
         .assistant-modal-header {
             background: var(--verde-floresta);
             color: white;
@@ -1086,7 +1087,6 @@
             background: rgba(255,255,255,0.3);
         }
 
-        /* Corpo do Modal - Iframe */
         .assistant-modal-body {
             flex: 1;
             background: #f5f5f5;
@@ -1352,7 +1352,6 @@
                 height: 50px;
             }
 
-            /* Botão flutuante no mobile - CORRIGIDO */
             .assistant-float {
                 bottom: 20px !important;
                 right: 20px !important;
@@ -1369,21 +1368,13 @@
                 font-size: 30px;
             }
             
-            /* Modal do assistente em tela cheia no mobile */
             .assistant-modal-container {
-                width: 100% !important;
-                height: 100% !important;
-                max-width: none !important;
-                bottom: 0 !important;
-                right: 0 !important;
-                left: 0 !important;
-                top: 0 !important;
-                border-radius: 0 !important;
-                animation: fadeIn 0.3s ease !important;
+                width: 95%;
+                height: 80vh;
+                margin: 0 10px;
             }
             
             .assistant-modal-header {
-                border-radius: 0;
                 padding: 20px;
             }
             
@@ -1402,7 +1393,6 @@
                 to { opacity: 1; }
             }
 
-            /* Ajustes para os sliders das acomodações */
             .accommodation-card {
                 position: relative;
                 overflow: visible;
@@ -1471,6 +1461,13 @@
 
             .section-title h2 {
                 font-size: 32px;
+            }
+
+            .assistant-modal-container {
+                width: 100%;
+                height: 90vh;
+                margin: 0;
+                border-radius: 15px;
             }
         }
     </style>
@@ -1562,19 +1559,19 @@
         </div>
     </div>
 
-    <!-- Modal do Assistente - Versão Simplificada -->
+    <!-- Modal do Assistente - Versão Centralizada -->
     <div class="assistant-modal" id="assistantModal">
         <div class="assistant-modal-overlay" id="assistantModalOverlay"></div>
         <div class="assistant-modal-container">
             <div class="assistant-modal-header">
-                <h2><i class="fas fa-robot"></i> Hotel Granja Brasil</h2>
+                <h2><i class="fas fa-robot"></i> Assistente de Reservas Virtual</h2>
                 <button class="assistant-modal-close" id="closeAssistantModal">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
             
             <div class="assistant-modal-body">
-                <iframe src="https://reservasgranjabrasil.github.io/assistente-de-reservas/" title="Reservas Granja Brasil"></iframe>
+                <iframe src="https://reservasgranjabrasil.github.io/assistente-de-reservas/" title="Assistente de Reservas"></iframe>
             </div>
         </div>
     </div>
@@ -1924,7 +1921,7 @@
 
         <div class="footer-bottom">
             <div class="container">
-                <p>&copy; 2026 Hotel Granja Brasil. Todos os direitos reservados. Desenvolvido por Smart Soluções em Hotelaria.</p>
+                <p>&copy; 2025 Hotel Granja Brasil. Todos os direitos reservados. Desenvolvido com <i class="fas fa-heart" style="color: var(--dourado);"></i> para nossos hóspedes.</p>
             </div>
         </div>
     </footer>
@@ -2094,7 +2091,7 @@
         closeModal.addEventListener('click', closePolicyModal);
         modalOverlay.addEventListener('click', closePolicyModal);
 
-        // Modal do Assistente functionality - CORRIGIDO: Oculta o botão flutuante
+        // Modal do Assistente functionality - Modal Centralizado
         const assistantModal = document.getElementById('assistantModal');
         const assistantButton = document.getElementById('assistantButton');
         const closeAssistantModal = document.getElementById('closeAssistantModal');
@@ -2220,6 +2217,3 @@
     </script>
 </body>
 </html>
-
-
-
